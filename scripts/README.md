@@ -115,7 +115,7 @@ Todo lo editable vive en `config.json`:
   `color` publica el hero como SVG en vez de texto, `saturation` sube el matiz
   de la foto, `min_brightness` (0-255) evita que los caracteres oscuros se
   pierdan contra el panel y `font_size` fija el tamano de la grilla.
-- `identity` — los datos personales del bloque de arriba del panel (`handle`,
+- `identity` — los datos personales del bloque de arriba del panel (`email`,
   `name`, `studies`, `location`, `working_on`, `learning`, `ask_me_about`,
   `collaborate_on`, `fun_fact`). Los campos vacios simplemente no se muestran.
 - `tech` — categorias y tecnologias de los badges.

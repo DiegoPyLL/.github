@@ -18,6 +18,7 @@ import time
 import urllib.error
 import urllib.request
 from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Any
 
@@ -42,6 +43,22 @@ def _request(url: str, *, accept: str = "application/vnd.github+json") -> str:
 
 def _get_json(url: str) -> Any:
     return json.loads(_request(url))
+
+
+def _graphql_query(query: str) -> Any:
+    """Ejecuta una query GraphQL contra la API de GitHub."""
+    url = f"{API}/graphql"
+    body = json.dumps({"query": query}).encode("utf-8")
+    headers = {"User-Agent": UA, "Accept": "application/vnd.github+json", "Content-Type": "application/json"}
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    req = urllib.request.Request(url, data=body, headers=headers)
+    with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+        result = json.loads(resp.read().decode("utf-8", errors="replace"))
+    if "errors" in result:
+        raise ValueError(f"GraphQL error: {result.get('errors')}")
+    return result.get("data", {})
 
 
 def _warn(msg: str) -> None:
@@ -80,6 +97,57 @@ def fetch_repos(user: str) -> list[dict]:
             break
         page += 1
     return repos
+
+
+def fetch_pinned_repos(user: str) -> list[dict]:
+    """Obtiene los repositorios pinneados en el perfil."""
+    query = f"""
+    query {{
+      user(login: "{user}") {{
+        pinnedItems(first: 6, types: REPOSITORY) {{
+          nodes {{
+            ... on Repository {{
+              name
+              description
+              url
+              languages(first: 5) {{
+                nodes {{
+                  name
+                }}
+              }}
+            }}
+          }}
+        }}
+      }}
+    }}
+    """
+    try:
+        result = _graphql_query(query)
+        items = result.get("user", {}).get("pinnedItems", {}).get("nodes", [])
+        repos = []
+        for item in items:
+            if not item:
+                continue
+            repo = {
+                "name": item.get("name"),
+                "description": item.get("description"),
+                "url": item.get("url"),
+                "languages": [lang.get("name") for lang in item.get("languages", {}).get("nodes", [])],
+                "stars": 0,
+            }
+            # Intenta obtener estrellas via REST API como fallback
+            if repo.get("name"):
+                try:
+                    rest_url = f"{API}/repos/{user}/{repo['name']}"
+                    rest_data = _get_json(rest_url)
+                    repo["stars"] = rest_data.get("stargazers_count", 0)
+                except (ValueError, urllib.error.URLError):
+                    pass
+            repos.append(repo)
+        return repos
+    except (ValueError, urllib.error.URLError) as exc:
+        _warn(f"no se pudieron obtener repos pinneados: {exc}")
+        return []
 
 
 def summarize_repos(repos: list[dict]) -> dict:
@@ -371,6 +439,9 @@ def collect(config: dict) -> dict:
     repos = fetch_repos(user)
     repo_stats = summarize_repos(repos)
 
+    print("> repositorios pinneados", file=sys.stderr)
+    pinned_repos = fetch_pinned_repos(user)
+
     print("> lenguajes", file=sys.stderr)
     totals = fetch_languages(
         repos,
@@ -404,9 +475,10 @@ def collect(config: dict) -> dict:
     }
 
     return {
-        "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "generated_at": datetime.now(ZoneInfo("America/Santiago")).isoformat(timespec="seconds"),
         "profile": profile,
         "repos": repo_stats,
+        "pinned_repos": pinned_repos,
         "languages": languages,
         "streaks": streaks,
         "counts": counts,

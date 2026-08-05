@@ -33,6 +33,44 @@
       }
     ]
   },
+  "pinned_repos": [
+    {
+      "name": "CarFlip",
+      "description": "Plataforma Chilena que recopila publicaciones de vehiculos usados y los muestra en un portal. Normaliza los datos y los categoriza con IA para asignarle la etiqueta de \"Deal\" ",
+      "url": "https://github.com/DiegoPyLL/CarFlip",
+      "languages": [
+        "Python",
+        "Mako",
+        "JavaScript",
+        "Astro",
+        "TypeScript"
+      ],
+      "stars": 1
+    },
+    {
+      "name": "FlujoPRT",
+      "description": "Sistema automatizado para capturar imágenes desde cámaras públicas de revisión técnica y aplicar análisis visual con reconocimiento vehicular, con almacenamiento local y procesamiento en AWS.",
+      "url": "https://github.com/DiegoPyLL/FlujoPRT",
+      "languages": [
+        "Python",
+        "Shell"
+      ],
+      "stars": 1
+    },
+    {
+      "name": "LapMaster",
+      "description": null,
+      "url": "https://github.com/DiegoPyLL/LapMaster",
+      "languages": [
+        "Assembly",
+        "Kotlin",
+        "HTML",
+        "Java",
+        "PureBasic"
+      ],
+      "stars": 0
+    }
+  ],
   "languages": [
     {
       "name": "TypeScript",
@@ -84,12 +122,12 @@
     "total": 675,
     "current": 11,
     "current_start": "2026-07-26",
-    "current_end": "2026-08-05",
+    "current_end": "2026-08-04",
     "longest": 19,
     "longest_start": "2025-10-15",
     "longest_end": "2025-11-02",
-    "days_tracked": 1313,
-    "active_days": 134,
+    "days_tracked": 1312,
+    "active_days": 133,
     "first_day": "2023-10-20",
     "exact_counts": true
   },

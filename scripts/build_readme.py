@@ -38,6 +38,11 @@ TEMPLATE = """\
 <!-- BEGIN:hero -->
 <!-- END:hero -->
 
+## Repos Principales
+
+<!-- BEGIN:repos -->
+<!-- END:repos -->
+
 ## 🔥 Rachas
 
 <!-- BEGIN:streaks -->
@@ -48,17 +53,15 @@ TEMPLATE = """\
 <!-- BEGIN:languages -->
 <!-- END:languages -->
 
-## 🏆 Logros
-
-<!-- BEGIN:achievements -->
-<!-- END:achievements -->
-
 ## 🛠️ Tecnologías
 
 <!-- BEGIN:tech -->
 <!-- END:tech -->
 
 ---
+
+<!-- BEGIN:quote -->
+<!-- END:quote -->
 
 <!-- BEGIN:footer -->
 <!-- END:footer -->
@@ -135,12 +138,12 @@ def write_hero_svg(config: dict, stats: dict, cells: list[Row] | None) -> bool:
     if not cells or not cfg.get("color", True):
         return False
 
-    handle, identity, live = render.hero_panel(stats, config)
+    email, identity, live = render.hero_panel(stats, config)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     (ASSETS_DIR / "hero.svg").write_text(
         svgkit.ascii_hero(
             cells,
-            handle,
+            email,
             identity,
             live,
             heading=render.STATS_HEADING,
@@ -152,7 +155,8 @@ def write_hero_svg(config: dict, stats: dict, cells: list[Row] | None) -> bool:
     return True
 
 
-def write_svgs(config: dict, stats: dict) -> None:
+def write_svgs(config: dict, stats: dict) -> bool:
+    """Escribe los paneles SVG. Devuelve si el de rachas tiene datos."""
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     overrides = config.get("tech_colors") or {}
 
@@ -162,6 +166,18 @@ def write_svgs(config: dict, stats: dict) -> None:
     (ASSETS_DIR / "tech-stack.svg").write_text(
         svgkit.tech_badges(config.get("tech", {}), overrides=overrides), encoding="utf-8"
     )
+
+    pinned = stats.get("pinned_repos", [])
+    if pinned:
+        (ASSETS_DIR / "pinned-repos.svg").write_text(
+            svgkit.pinned_repos_panel(pinned, overrides=overrides), encoding="utf-8"
+        )
+
+    cards = render.streak_cards(stats)
+    if cards:
+        (ASSETS_DIR / "streaks.svg").write_text(svgkit.streak_panel(cards), encoding="utf-8")
+
+    return bool(cards)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -188,7 +204,7 @@ def main(argv: list[str] | None = None) -> int:
     cells = build_ascii(config, stats)
     art = cells_to_text(cells) if cells else None
     colored_hero = write_hero_svg(config, stats, cells)
-    write_svgs(config, stats)
+    has_streaks = write_svgs(config, stats)
 
     readme = PROFILE_DIR / "README.md"
     text = readme.read_text(encoding="utf-8") if readme.exists() else ""
@@ -196,13 +212,18 @@ def main(argv: list[str] | None = None) -> int:
         print("> README sin marcadores, se escribe la plantilla base", file=sys.stderr)
         text = TEMPLATE
 
-    # El hero de texto se arma igual aunque se publique el SVG: es el que fija
-    # el ancho comun de los cuadros de rachas y logros.
+    # El hero de texto se arma igual aunque se publique el SVG: es el respaldo
+    # para cuando no hay imagen de origen o se apaga el color.
     blocks = render.build_blocks(stats, config, art)
     if colored_hero:
         blocks["hero"] = (
             '<img src="assets/hero.svg" alt="Retrato en ASCII y datos del perfil" width="100%">'
         )
+    blocks["streaks"] = (
+        '<img src="assets/streaks.svg" alt="Rachas de contribución" width="100%">'
+        if has_streaks
+        else "_Sin datos de contribuciones._"
+    )
     blocks["languages"] = (
         '<img src="assets/languages.svg" alt="Distribución de lenguajes" width="100%">'
     )

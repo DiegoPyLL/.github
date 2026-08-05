@@ -34,7 +34,7 @@ LANGUAGE_COLORS = {
     "svelte": "#FF3E00",
     "astro": "#FF5D01",
     "mdx": "#FCB32C",
-    "handlebars": "#F7931E",
+    "emailbars": "#F7931E",
     "ejs": "#A91E50",
     "nix": "#7E7EFF",
     "zig": "#EC915C",
@@ -105,6 +105,10 @@ BRAND_COLORS = {
 }
 
 FALLBACK = "#6E7681"
+
+# Ancho comun de los paneles que van uno debajo del otro. El hero conserva su
+# ancho natural (lo fija la grilla del ASCII); el README los escala al 100%.
+PANEL_WIDTH = 860
 
 # Anchos relativos aproximados para una sans-serif de 12px en negrita.
 _NARROW = set("ijltfrI.,:;'\"|!()[]{}-")
@@ -179,22 +183,36 @@ MONO_FAMILY = (
 )
 
 
-def _hero_css(font_size: float) -> str:
-    """El panel del hero va oscuro en los dos temas.
+# Paleta de las tarjetas. Va oscura en los dos temas: en el hero la rampa asigna
+# los glifos densos a los pixeles claros, asi que sobre fondo blanco el retrato se
+# leeria en negativo. Los demas paneles la comparten para que la pagina se lea como
+# un solo bloque.
+_CARD_CSS = (
+    "    .card { fill: #0D1117; stroke: #30363D; }\n"
+    "    .val { fill: #E6EDF3; }\n"
+    "    .key { fill: #7D8590; }\n"
+    "    .head { fill: #58A6FF; }\n"
+    "    .rule { stroke: #30363D; }\n"
+    "    .track { fill: #21262D; }\n"
+)
 
-    La rampa asigna los glifos densos a los pixeles claros, asi que sobre fondo
-    blanco el retrato se leeria en negativo y los colores claros de la foto se
-    perderian contra el papel.
-    """
+CARD_RADIUS = 10
+
+
+def _card_rect(x: float, y: float, w: float, h: float) -> str:
+    """Fondo de tarjeta. El medio pixel deja el trazo dentro del viewBox."""
+    return (
+        f'  <rect class="card" x="{x + 0.5:.1f}" y="{y + 0.5:.1f}" '
+        f'width="{w - 1:.1f}" height="{h - 1:.1f}" rx="{CARD_RADIUS}"/>\n'
+    )
+
+
+def _hero_css(font_size: float) -> str:
+    """La tarjeta comun mas la tipografia monoespaciada de la grilla ASCII."""
     return (
         f"    text {{ font-family: {MONO_FAMILY}; font-size: {font_size:g}px; "
         f"white-space: pre; }}\n"
-        "    .card { fill: #0D1117; stroke: #30363D; }\n"
-        "    .val { fill: #E6EDF3; }\n"
-        "    .key { fill: #7D8590; }\n"
-        "    .head { fill: #58A6FF; }\n"
-        "    .rule { stroke: #30363D; }\n"
-    )
+    ) + _CARD_CSS
 
 
 # Cuantizar el color junta celdas vecinas en una sola corrida: mismo aspecto,
@@ -246,7 +264,7 @@ def _row(runs: list[tuple[str, str]], x: float, y: float, advance: float) -> str
 
 
 def _info_lines(
-    handle: str,
+    email: str,
     identity: list[tuple[str, str]],
     stats: list[tuple[str, str]],
     heading: str,
@@ -258,7 +276,7 @@ def _info_lines(
     dibuja como <line> y no repitiendo ─, que en algun visor sale con costuras.
     """
     key_w = max((len(label) for label, _ in identity + stats), default=0)
-    lines: list[list[tuple[str, str]] | None] = [[(handle, ' class="val"')], None]
+    lines: list[list[tuple[str, str]] | None] = [[(email, ' class="val"')], None]
 
     def rows_to_lines(rows: list[tuple[str, str]]) -> None:
         for label, value in rows:
@@ -277,7 +295,7 @@ def _info_lines(
 
 def ascii_hero(
     art: list[list[tuple[str, tuple[int, int, int] | None]]],
-    handle: str,
+    email: str,
     identity: list[tuple[str, str]],
     stats: list[tuple[str, str]],
     *,
@@ -297,8 +315,8 @@ def ascii_hero(
     pad_y = line_h * 0.9
 
     art_w = max((len(row) for row in art), default=0)
-    info_lines, info_w = _info_lines(handle, identity, stats, heading)
-    rule_cols = max(len(handle), len(heading), 28)
+    info_lines, info_w = _info_lines(email, identity, stats, heading)
+    rule_cols = max(len(email), len(heading), 28)
     info_w = max(info_w, rule_cols)
 
     # Cada tarjeta se mide sola; la mas corta se estira al alto de la otra para
@@ -313,10 +331,7 @@ def ascii_hero(
     width = art_card_w + gap + info_card_w
 
     def card(x: float, w: float) -> str:
-        return (
-            f'  <rect class="card" x="{x + 0.5:.1f}" y="0.5" width="{w - 1:.1f}" '
-            f'height="{height - 1:.1f}" rx="10"/>\n'
-        )
+        return _card_rect(x, 0, w, height)
 
     def baseline(index: int, count: int) -> float:
         # Cada bloque se centra vertical dentro de su tarjeta.
@@ -343,31 +358,89 @@ def ascii_hero(
     return _svg(width, height, "".join(parts), extra_css=_hero_css(font_size), theme=False)
 
 
+# ------------------------------------------------------------------- rachas
+
+# Padding interno de los paneles con tarjeta.
+CARD_PAD_X = 28.0
+CARD_PAD_Y = 24.0
+
+
+def streak_panel(cards: list[list[str]], *, width: int = PANEL_WIDTH) -> str:
+    """Tarjeta con una columna por racha, separadas por una regla vertical.
+
+    Cada columna llega como [valor, etiqueta, detalle] ya formateado por
+    render.py: aqui solo se dibuja.
+    """
+    if not cards:
+        return _svg(width, 24, '  <text class="key" x="0" y="16" font-size="13">Sin datos</text>\n',
+                    extra_css=_CARD_CSS, theme=False)
+
+    value_size = 34.0
+    label_size = 14.0
+    detail_size = 12.0
+
+    # Las tres lineas se miden por linea base. El alto arranca en la altura de
+    # mayuscula del numero y termina bajo el trazo descendente del detalle: asi
+    # el aire de arriba y el de abajo quedan iguales de verdad.
+    y_value = CARD_PAD_Y + value_size * 0.72
+    y_label = y_value + 24.0
+    y_detail = y_label + 22.0
+    # Redondeado para que el rect de la tarjeta y el viewBox coincidan al pixel.
+    height = round(y_detail + detail_size * 0.28 + CARD_PAD_Y)
+
+    parts = [_card_rect(0, 0, width, height)]
+    col_w = width / len(cards)
+
+    for i, (value, label, detail) in enumerate(cards):
+        cx = col_w * (i + 0.5)
+        if i:
+            # La regla no llega a los bordes: deja respirar la esquina redondeada.
+            parts.append(
+                f'  <line class="rule" x1="{col_w * i:.1f}" y1="{CARD_PAD_Y:.1f}" '
+                f'x2="{col_w * i:.1f}" y2="{height - CARD_PAD_Y:.1f}"/>\n'
+            )
+        parts.append(
+            f'  <text class="val" x="{cx:.1f}" y="{y_value:.1f}" font-size="{value_size:g}" '
+            f'font-weight="700" text-anchor="middle">{escape(value)}</text>\n'
+            f'  <text class="head" x="{cx:.1f}" y="{y_label:.1f}" font-size="{label_size:g}" '
+            f'font-weight="600" text-anchor="middle">{escape(label)}</text>\n'
+            f'  <text class="key" x="{cx:.1f}" y="{y_detail:.1f}" font-size="{detail_size:g}" '
+            f'text-anchor="middle">{escape(detail)}</text>\n'
+        )
+
+    return _svg(width, height, "".join(parts), extra_css=_CARD_CSS, theme=False)
+
+
 # --------------------------------------------------------- barra de lenguajes
 
 
 def language_bar(
     languages: list[dict],
     *,
-    width: int = 860,
+    width: int = PANEL_WIDTH,
     columns: int = 3,
     overrides: dict[str, str] | None = None,
 ) -> str:
-    """Barra apilada con la distribucion de lenguajes + leyenda."""
+    """Barra apilada con la distribucion de lenguajes + leyenda, sobre tarjeta."""
     if not languages:
-        return _svg(width, 24, '  <text class="muted" x="0" y="16" font-size="13">Sin datos</text>\n')
+        return _svg(width, 24, '  <text class="key" x="0" y="16" font-size="13">Sin datos</text>\n',
+                    extra_css=_CARD_CSS, theme=False)
 
     bar_h = 14
     legend_top = bar_h + 22
     row_h = 24
     rows = -(-len(languages) // columns)
-    height = legend_top + rows * row_h
-    col_w = width / columns
+    inner_w = width - CARD_PAD_X * 2
+    height = CARD_PAD_Y * 2 + legend_top + rows * row_h - (row_h - 13)
+    col_w = inner_w / columns
 
     parts = [
+        _card_rect(0, 0, width, height),
+        f'  <g transform="translate({CARD_PAD_X:.1f},{CARD_PAD_Y:.1f})">\n',
         '  <clipPath id="round"><rect x="0" y="0" '
-        f'width="{width}" height="{bar_h}" rx="{bar_h / 2}"/></clipPath>\n',
-        f'  <rect class="track" x="0" y="0" width="{width}" height="{bar_h}" rx="{bar_h / 2}"/>\n',
+        f'width="{inner_w:.1f}" height="{bar_h}" rx="{bar_h / 2}"/></clipPath>\n',
+        f'  <rect class="track" x="0" y="0" width="{inner_w:.1f}" height="{bar_h}" '
+        f'rx="{bar_h / 2}"/>\n',
         '  <g clip-path="url(#round)">\n',
     ]
 
@@ -375,10 +448,10 @@ def language_bar(
     x = 0.0
     for i, lang in enumerate(languages):
         color = _color_for(lang["name"], LANGUAGE_COLORS, overrides)
-        seg = width * lang["percent"] / total
+        seg = inner_w * lang["percent"] / total
         # El ultimo segmento cierra la barra para evitar un hueco por redondeo.
         if i == len(languages) - 1:
-            seg = width - x
+            seg = inner_w - x
         parts.append(f'    <rect x="{x:.2f}" y="0" width="{seg:.2f}" height="{bar_h}" fill="{color}"/>\n')
         x += seg
     parts.append("  </g>\n")
@@ -390,15 +463,16 @@ def language_bar(
         color = _color_for(lang["name"], LANGUAGE_COLORS, overrides)
         parts.append(f'  <circle cx="{cx + 6:.1f}" cy="{cy + 6:.1f}" r="6" fill="{color}"/>\n')
         parts.append(
-            f'  <text class="fg" x="{cx + 20:.1f}" y="{cy + 11:.1f}" font-size="13" '
+            f'  <text class="val" x="{cx + 20:.1f}" y="{cy + 11:.1f}" font-size="13" '
             f'font-weight="600">{escape(lang["name"])}</text>\n'
         )
         parts.append(
-            f'  <text class="muted" x="{cx + 26 + _text_width(lang["name"], 13):.1f}" '
+            f'  <text class="key" x="{cx + 26 + _text_width(lang["name"], 13):.1f}" '
             f'y="{cy + 11:.1f}" font-size="13">{lang["percent"]}%</text>\n'
         )
 
-    return _svg(width, height, "".join(parts))
+    parts.append("  </g>\n")
+    return _svg(width, height, "".join(parts), extra_css=_CARD_CSS, theme=False)
 
 
 # ------------------------------------------------------------------- badges
@@ -448,3 +522,142 @@ def tech_badges(
 
     height = max(y - group_gap, badge_h)
     return _svg(width, height, "".join(parts))
+
+
+# ---------------------------------------------------------- repos pinneados
+
+def _wrap_text(text: str, max_width: float, font_size: float = 12.0) -> list[str]:
+    """Parte texto en lineas que caben en un ancho dado, sin limite de lineas."""
+    if not text:
+        return []
+
+    lines = []
+    current_line = ""
+
+    for word in text.split():
+        test_line = f"{current_line} {word}".strip()
+        if current_line and _text_width(test_line, font_size) > max_width:
+            lines.append(current_line)
+            current_line = word
+        else:
+            current_line = test_line
+
+    if current_line:
+        lines.append(current_line)
+
+    return lines
+
+
+def pinned_repos_panel(
+    repos: list[dict],
+    *,
+    width: int = PANEL_WIDTH,
+    columns: int = 2,
+    overrides: dict[str, str] | None = None,
+) -> str:
+    """Panel con tarjetas de repos pinneados.
+
+    Cada tarjeta muestra: nombre, descripcion completa, lenguajes y estrellas.
+    La altura de cada tarjeta se ajusta al texto que tenga, y la fila crece
+    hasta la tarjeta mas alta para que las columnas sigan alineadas.
+    """
+    if not repos:
+        return _svg(width, 24, '  <text class="key" x="0" y="16" font-size="13">Sin repos pinneados</text>\n',
+                    extra_css=_CARD_CSS, theme=False)
+
+    card_pad = 14
+    gap = 16
+    name_offset = 36  # distancia del top de la tarjeta al inicio de la descripcion
+    line_h = 16
+    gap_after_desc = 14
+    badge_h = 20
+    inner_w = width - CARD_PAD_X * 2
+    col_w = (inner_w - gap * (columns - 1)) / columns
+
+    # Primera pasada: arma las lineas de descripcion y la altura que necesita
+    # cada tarjeta segun su propio contenido.
+    laid_out = []
+    for repo in repos:
+        desc = (repo.get("description") or "").strip()
+        desc_lines = _wrap_text(desc, col_w - card_pad * 2, 11)
+        desc_block_h = len(desc_lines) * line_h
+        langs_y = card_pad + name_offset + desc_block_h + (gap_after_desc if desc_lines else 0)
+        card_h = langs_y + badge_h + card_pad
+        laid_out.append({"repo": repo, "desc_lines": desc_lines, "langs_y": langs_y, "card_h": card_h})
+
+    # Segunda pasada: cada fila toma la altura de su tarjeta mas alta.
+    rows = -(-len(laid_out) // columns)
+    row_h = [0.0] * rows
+    for i, item in enumerate(laid_out):
+        r = i // columns
+        row_h[r] = max(row_h[r], item["card_h"])
+
+    row_y = [0.0] * rows
+    for r in range(1, rows):
+        row_y[r] = row_y[r - 1] + row_h[r - 1] + gap
+
+    height = CARD_PAD_Y * 2 + sum(row_h) + gap * (rows - 1)
+
+    parts = [
+        _card_rect(0, 0, width, height),
+        f'  <g transform="translate({CARD_PAD_X:.1f},{CARD_PAD_Y:.1f})">\n',
+    ]
+
+    for i, item in enumerate(laid_out):
+        repo = item["repo"]
+        row, col = i // columns, i % columns
+        x = col * (col_w + gap)
+        y = row_y[row]
+        card_h = row_h[row]
+
+        # Fondo de la tarjeta del repo
+        parts.append(
+            f'  <rect x="{x:.1f}" y="{y:.1f}" width="{col_w:.1f}" height="{card_h:.1f}" '
+            f'rx="6" fill="#161B22" stroke="#30363D" stroke-width="1"/>\n'
+        )
+
+        # Nombre del repo (clickeable con href)
+        repo_name = repo.get("name", "")
+        repo_url = repo.get("url", "")
+        parts.append(
+            f'  <a href="{escape(repo_url)}">\n'
+            f'    <text class="head" x="{x + card_pad:.1f}" y="{y + card_pad + 15:.1f}" '
+            f'font-size="16" font-weight="700">{escape(repo_name)}</text>\n'
+            f'  </a>\n'
+        )
+
+        # Descripcion completa
+        desc_y = y + card_pad + name_offset
+        for line in item["desc_lines"]:
+            parts.append(
+                f'  <text class="key" x="{x + card_pad:.1f}" y="{desc_y:.1f}" '
+                f'font-size="11">{escape(line)}</text>\n'
+            )
+            desc_y += line_h
+
+        # Lenguajes como badges pequeños
+        langs = repo.get("languages", [])[:3]
+        langs_y = y + item["langs_y"]
+        lang_x = x + card_pad
+        for lang in langs:
+            color = _color_for(lang, LANGUAGE_COLORS, overrides)
+            fg = _readable_text(color)
+            lang_w = _text_width(lang, 10) + 10
+            parts.append(
+                f'  <rect x="{lang_x:.1f}" y="{langs_y:.1f}" width="{lang_w:.1f}" '
+                f'height="{badge_h}" rx="4" fill="{color}"/>\n'
+                f'  <text x="{lang_x + lang_w / 2:.1f}" y="{langs_y + 14:.1f}" '
+                f'font-size="11" font-weight="600" fill="{fg}" text-anchor="middle">{escape(lang)}</text>\n'
+            )
+            lang_x += lang_w + 6
+
+        # Estrellas, alineadas con la fila de badges
+        stars = repo.get("stars", 0)
+        stars_text = f"⭐ {stars}" if stars > 0 else ""
+        parts.append(
+            f'  <text class="key" x="{x + col_w - card_pad:.1f}" y="{langs_y + 14:.1f}" '
+            f'font-size="13" text-anchor="end">{escape(stars_text)}</text>\n'
+        )
+
+    parts.append("  </g>\n")
+    return _svg(width, height, "".join(parts), extra_css=_CARD_CSS, theme=False)

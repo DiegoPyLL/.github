@@ -58,7 +58,7 @@
   <text x="301.0" y="296.0" font-size="12" font-weight="600" fill="#0D1117" text-anchor="middle">Supabase</text>
   <rect x="349.3" y="278.0" width="57.1" height="28" rx="6" fill="#DC382D"/>
   <text x="377.8" y="296.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Redis</text>
-  <text class="muted" x="0" y="333.0" font-size="12" font-weight="700" letter-spacing="0.6">INFRA</text>
+  <text class="muted" x="0" y="333.0" font-size="12" font-weight="700" letter-spacing="0.6">INFRAESTRUCTURA</text>
   <rect x="0.0" y="342.0" width="50.9" height="28" rx="6" fill="#FF9900"/>
   <text x="25.4" y="360.0" font-size="12" font-weight="600" fill="#0D1117" text-anchor="middle">AWS</text>
   <rect x="58.9" y="342.0" width="64.1" height="28" rx="6" fill="#2496ED"/>

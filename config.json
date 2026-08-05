@@ -18,7 +18,7 @@
   },
 
   "identity": {
-    "handle": "diego@github",
+    "email": "dpenaylilloluhrs@gmail.com",
     "name": "Diego Peña y Lillo",
     "studies": "Ingeniería Informática, esp. en Inteligencia Artificial",
     "location": "Chile",
@@ -35,7 +35,12 @@
     "Frontend": ["React", "Next.js", "Astro", "Tailwind CSS"],
     "Datos": ["Pandas", "NumPy", "Matplotlib", "Jupyter"],
     "Bases de datos": ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Redis"],
-    "Infra": ["AWS", "Docker", "Vercel", "Git", "GitHub", "Linux"]
+    "Infraestructura": ["AWS", "Docker", "Vercel", "Git", "GitHub", "Linux"]
+  },
+
+  "quote": {
+    "text": "Lo que hace el aburrimiento es increíble.",
+    "author": "Diego Peña y Lillo Luhrs"
   },
 
   "tech_colors": {},

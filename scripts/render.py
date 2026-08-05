@@ -63,12 +63,6 @@ def _pad(text: str, width: int) -> str:
     return text + " " * max(0, width - len(text))
 
 
-def _center(text: str, width: int) -> str:
-    space = max(0, width - len(text))
-    left = space // 2
-    return " " * left + text + " " * (space - left)
-
-
 def _fence(lines: list[str]) -> str:
     return "```text\n" + "\n".join(lines) + "\n```"
 
@@ -84,31 +78,6 @@ def _frame(lines: list[str], width: int) -> list[str]:
     indent = " " * max(0, (inner - block) // 2)
     body = ["│ " + _pad(indent + line if line else "", inner) + " │" for line in ["", *lines, ""]]
     return ["╭" + "─" * (width - 2) + "╮", *body, "╰" + "─" * (width - 2) + "╯"]
-
-
-def _columns(cards: list[list[str]], width: int) -> list[str]:
-    """Cuadro dividido en columnas, con conectores en los bordes."""
-    n = len(cards)
-    base, extra = divmod(width - 2 - (n - 1), n)
-    widths = [base + (1 if i < extra else 0) for i in range(n)]
-
-    def row(cells: list[str]) -> str:
-        return "│" + "│".join(_center(c, w) for c, w in zip(cells, widths)) + "│"
-
-    blank = row([""] * n)
-    rows = [row([card[i] for card in cards]) for i in range(len(cards[0]))]
-    return [
-        "╭" + "┬".join("─" * w for w in widths) + "╮",
-        blank,
-        *rows,
-        blank,
-        "╰" + "┴".join("─" * w for w in widths) + "╯",
-    ]
-
-
-def _bar(level: int, max_level: int, cells: int = 12) -> str:
-    filled = round(cells * level / max_level) if max_level else 0
-    return "█" * filled + "░" * (cells - filled)
 
 
 def _clamp_width(natural: int) -> int:
@@ -212,9 +181,9 @@ def _stat_rows(stats: dict) -> list[tuple[str, str]]:
 
 
 def hero_panel(stats: dict, config: dict) -> tuple[str, list[tuple[str, str]], list[tuple[str, str]]]:
-    """Handle, datos fijos y estadisticas del hero: los usan la version texto y la SVG."""
-    handle = config.get("identity", {}).get("handle") or stats.get("profile", {}).get("login", "")
-    return handle, _identity_rows(config, stats), _stat_rows(stats)
+    """email, datos fijos y estadisticas del hero: los usan la version texto y la SVG."""
+    email = config.get("identity", {}).get("email") or stats.get("profile", {}).get("login", "")
+    return email, _identity_rows(config, stats), _stat_rows(stats)
 
 
 def _rows_to_lines(rows: list[tuple[str, str]], label_width: int) -> list[str]:
@@ -225,10 +194,10 @@ def _hero_lines(stats: dict, config: dict, ascii_art: str | None) -> list[str]:
     art_lines = (ascii_art or FALLBACK_ASCII).rstrip("\n").split("\n")
     art_width = max((len(line) for line in art_lines), default=0)
 
-    handle, identity, live = hero_panel(stats, config)
+    email, identity, live = hero_panel(stats, config)
     label_width = max((len(label) for label, _ in identity + live), default=0)
 
-    info = [handle, "─" * max(len(handle), 28)]
+    info = [email, "─" * max(len(email), 28)]
     info += _rows_to_lines(identity, label_width)
     if identity and live:
         info += ["", STATS_HEADING, "─" * max(len(STATS_HEADING), 28)]
@@ -251,14 +220,14 @@ def _hero_lines(stats: dict, config: dict, ascii_art: str | None) -> list[str]:
 # --------------------------------------------------------------------- rachas
 
 
-def _streak_cards(stats: dict) -> list[list[str]] | None:
+def streak_cards(stats: dict) -> list[list[str]] | None:
+    """Tarjetas de racha: [valor, etiqueta, detalle].
+
+    El total de contribuciones no va aqui: ya aparece en el panel del hero.
+    """
     data = stats.get("streaks") or {}
     if not data.get("days_tracked"):
         return None
-
-    total = _num(data.get("total"))
-    if not data.get("exact_counts", True):
-        total = f"{_num(data.get('active_days'))}+"
 
     current_range = (
         f"{_short_date(data.get('current_start'))} → hoy"
@@ -272,54 +241,58 @@ def _streak_cards(stats: dict) -> list[list[str]] | None:
     )
 
     return [
-        [total, "Contribuciones totales", f"desde {_short_date(data.get('first_day'))}"],
         [str(data.get("current", 0)), "Racha actual · días", current_range],
         [str(data.get("longest", 0)), "Racha más larga · días", longest_range],
     ]
 
 
-# --------------------------------------------------------------------- logros
+# ----------------------------------------------------------------------- quote
 
 
-def _achievement_lines(stats: dict, inner: int | None = None) -> list[str] | None:
-    """Filas de logros.
+QUOTE_HINT = (
+    '<!-- Tu cita va aqui: escribela en config.json, en "quote": '
+    '{ "text": "...", "author": "..." }. Editar este bloque a mano no sirve, '
+    "el build lo reescribe. -->"
+)
 
-    Con `inner` la barra se estira hasta llenar el cuadro y la meta queda
-    alineada al borde derecho: el espacio sobrante se gasta en informacion en
-    vez de quedar en blanco.
+
+def quote(config: dict) -> str:
+    """Cita del final, editable en config.json.
+
+    Sin texto se deja el hueco con una pista: el bloque se regenera en cada
+    build, asi que el contenido tiene que salir de config.json.
     """
-    items = stats.get("achievements") or []
-    if not items:
-        return None
+    data = config.get("quote") or {}
+    text = (data.get("text") or "").strip()
+    if not text:
+        return QUOTE_HINT
 
-    name_w = max(len(i["title"]) for i in items)
-    value_w = max(len(_num(i["value"])) for i in items)
+    # Las comillas se ponen aca, asi que las que ya traiga el texto sobran.
+    text = text.strip("\"'“”«»").strip()
 
-    goals = []
-    for item in items:
-        if item.get("next"):
-            goals.append(
-                f"faltan {_num(item['next'] - item['value'])} para {item.get('next_tier', '—')}"
-            )
-        else:
-            goals.append("rango máximo")
-    goal_w = max(len(g) for g in goals)
+    body = text.splitlines()
+    body[0] = f"*“{body[0]}"
+    body[-1] = f"{body[-1]}”*"
+    lines = [f"> {line}" for line in body]
 
-    # nombre + 3 + valor + 3 + "[ X ]" + 3
-    prefix_w = name_w + value_w + 16
-    cells = max(12, inner - prefix_w - goal_w - 3) if inner else 12
+    author = (data.get("author") or "").strip()
+    if author:
+        # El markdown no alinea a la derecha; el <p align> si, y GitHub lo
+        # acepta dentro de la cita.
+        lines += [">", f'> <p align="right">— <b>{author}</b></p>']
+    return "\n".join(lines)
 
-    lines = []
-    for item, goal in zip(items, goals):
-        lines.append(
-            f"{_pad(item['title'], name_w)}   "
-            f"{_num(item['value']).rjust(value_w)}   "
-            f"[ {item['tier'].center(3)} ]   "
-            f"{_bar(item['level'], item['max_level'], cells)}   "
-            f"{goal.rjust(goal_w)}"
-        )
-    return lines
 
+# -------------------------------------------------------------- repos principales
+
+def pinned_repos(stats: dict) -> str:
+    """Devuelve el marcador de imagen (el SVG se genera en build_readme.py)."""
+    # El SVG se genera en build_readme.py y se embebe aqui.
+    # Esta funcion solo devuelve un placeholder.
+    repos = stats.get("pinned_repos") or []
+    if not repos:
+        return "_Sin repos pinneados._"
+    return '<img src="assets/pinned-repos.svg" alt="Repositorios pinneados" width="100%">'
 
 # ---------------------------------------------------------------------- footer
 
@@ -335,8 +308,7 @@ def footer(stats: dict, config: dict) -> str:
     workflow = f"{base}/blob/main/.github/workflows/refresh-readme.yml"
     return (
         f"<sub>Actualizado automáticamente el {when} por "
-        f"<a href=\"{workflow}\">GitHub Actions</a> — "
-        f"generado con los scripts de <a href=\"{base}/tree/main/scripts\">scripts/</a>, "
+        f"<a href=\"{workflow}\">GitHub Actions</a> — "        
         f"sin servicios externos en el render.</sub>"
     )
 
@@ -345,25 +317,17 @@ def footer(stats: dict, config: dict) -> str:
 
 
 def build_blocks(stats: dict, config: dict, ascii_art: str | None) -> dict[str, str]:
-    """Renderiza los tres cuadros con un ancho comun."""
+    """Bloques de texto del README.
+
+    Rachas y lenguajes salen como SVG (los arma build_readme.py); aqui
+    solo queda el hero en texto, que es el respaldo para cuando no hay imagen.
+    """
     hero_lines = _hero_lines(stats, config, ascii_art)
-    ach_lines = _achievement_lines(stats)
-    cards = _streak_cards(stats)
-
-    natural = max(
-        [len(line) for line in hero_lines]
-        + [len(line) for line in (ach_lines or [])]
-        # Cada tarjeta necesita su texto mas ancho, mas aire a los lados.
-        + [max(len(line) for card in (cards or [[""]]) for line in card) * 3 + 8]
-    )
-    width = _clamp_width(natural + 4)
-
-    # Ya con el ancho definitivo, los logros se rearman justificados al borde.
-    ach_lines = _achievement_lines(stats, inner=width - 4)
+    width = _clamp_width(max(len(line) for line in hero_lines) + 4)
 
     return {
         "hero": _fence(_frame(hero_lines, width)),
-        "streaks": _fence(_columns(cards, width)) if cards else "_Sin datos de contribuciones._",
-        "achievements": _fence(_frame(ach_lines, width)) if ach_lines else "_Sin logros._",
+        "repos": pinned_repos(stats),
+        "quote": quote(config),
         "footer": footer(stats, config),
     }

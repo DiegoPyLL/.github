@@ -2,43 +2,33 @@
 <img src="assets/hero.svg" alt="Retrato en ASCII y datos del perfil" width="100%">
 <!-- END:hero -->
 
+<!-- BEGIN:quote -->
+> *“Lo que hace el aburrimiento es increíble.”*
+>
+> <p align="right">— <b>Diego Peña y Lillo Luhrs</b></p>
+<!-- END:quote -->
+
 ## 🔥 Rachas
 
 <!-- BEGIN:streaks -->
-```text
-╭───────────────────────────────────────────────┬──────────────────────────────────────────────┬──────────────────────────────────────────────╮
-│                                               │                                              │                                              │
-│                      672                      │                      11                      │                      19                      │
-│            Contribuciones totales             │             Racha actual · días              │            Racha más larga · días            │
-│               desde 20 oct 2023               │              26 jul 2026 → hoy               │           15 oct 2025 → 2 nov 2025           │
-│                                               │                                              │                                              │
-╰───────────────────────────────────────────────┴──────────────────────────────────────────────┴──────────────────────────────────────────────╯
-```
+<img src="assets/streaks.svg" alt="Rachas de contribución" width="100%">
 <!-- END:streaks -->
+
+
+## Repos Principales
+
+<!-- BEGIN:repos -->
+<img src="assets/pinned-repos.svg" alt="Repositorios pinneados" width="100%">
+<!-- END:repos -->
+
+
+
 
 ## 📊 Lenguajes
 
 <!-- BEGIN:languages -->
 <img src="assets/languages.svg" alt="Distribución de lenguajes" width="100%">
 <!-- END:languages -->
-
-## 🏆 Logros
-
-<!-- BEGIN:achievements -->
-```text
-╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                                                                             │
-│ Commits         672   [  A  ]   ████████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   faltan 328 para S │
-│ Repos             6   [  B  ]   █████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     faltan 4 para A │
-│ Estrellas         2   [  C  ]   ██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     faltan 8 para B │
-│ Seguidores        5   [  C  ]   ██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     faltan 5 para B │
-│ Pull requests    14   [  B  ]   █████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    faltan 36 para A │
-│ Issues           68   [  S  ]   ██████████████████████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   faltan 32 para SS │
-│ Experiencia       2   [  B  ]   █████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     faltan 1 para A │
-│                                                                                                                                             │
-╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-```
-<!-- END:achievements -->
 
 ## 🛠️ Tecnologías
 
@@ -49,5 +39,5 @@
 ---
 
 <!-- BEGIN:footer -->
-<sub>Actualizado automáticamente el 5 ago 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — generado con los scripts de <a href="https://github.com/DiegoPyLL/.github/tree/main/scripts">scripts/</a>, sin servicios externos en el render.</sub>
+<sub>Actualizado automáticamente el 4 ago 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
 <!-- END:footer -->

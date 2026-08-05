@@ -1,1 +1,3 @@
 Pillow>=10.0
+# zoneinfo usa la base de datos del sistema; Windows no la trae.
+tzdata>=2024.1

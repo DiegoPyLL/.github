@@ -15,7 +15,7 @@
 │    t/{1[]]]?--_-fXxjr\?~~~+??_-?[[_rr    Seguidores       5                      │
 │    ;x1[{[??????[|Xnr}ii<~~~+_?}[[])C^    Contribuciones   672                    │
 │     !f1}1}?___-]xcnr1+~+<<~_-[{}?1cI     Pull requests    14                     │
-│    . :(\){]?_~~_[|1}1[}1{-_?[{[{/(^      Racha            10 días                │
+│    . :(\){]?_~~_[|1}1[}1{-_?[{[{/(^      Racha            11 días                │
 │     .  ~/j)?_+~>>+)t{]?--__-{/f|i        En GitHub        2 años                 │
 │          i{||(fYCO8p/((tj\))1?I                                                  │
 │            'l+xa$$$$$$$B*X+:                                                     │
@@ -30,7 +30,7 @@
 ```text
 ╭───────────────────────────┬───────────────────────────┬──────────────────────────╮
 │                           │                           │                          │
-│            672            │            10             │            19            │
+│            672            │            11             │            19            │
 │  Contribuciones totales   │    Racha actual · días    │  Racha más larga · días  │
 │     desde 20 oct 2023     │     26 jul 2026 → hoy     │ 15 oct 2025 → 2 nov 2025 │
 │                           │                           │                          │
@@ -71,5 +71,5 @@
 ---
 
 <!-- BEGIN:footer -->
-<sub>Actualizado automáticamente el 4 ago 2026 por <a href=".github/workflows/refresh-readme.yml">GitHub Actions</a> — generado con los scripts de <a href="scripts/">scripts/</a>, sin servicios externos en el render.</sub>
+<sub>Actualizado automáticamente el 5 ago 2026 por <a href=".github/workflows/refresh-readme.yml">GitHub Actions</a> — generado con los scripts de <a href="scripts/">scripts/</a>, sin servicios externos en el render.</sub>
 <!-- END:footer -->

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T20:49:32-04:00",
+  "generated_at": "2026-08-05T01:01:22+00:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -37,32 +37,32 @@
     {
       "name": "TypeScript",
       "bytes": 578524,
-      "percent": 31.8
+      "percent": 31.1
     },
     {
       "name": "Python",
-      "bytes": 407290,
-      "percent": 22.4
+      "bytes": 448120,
+      "percent": 24.1
     },
     {
       "name": "Astro",
       "bytes": 352322,
-      "percent": 19.4
+      "percent": 19.0
     },
     {
       "name": "Kotlin",
       "bytes": 192077,
-      "percent": 10.6
+      "percent": 10.3
     },
     {
       "name": "HTML",
       "bytes": 149706,
-      "percent": 8.2
+      "percent": 8.1
     },
     {
       "name": "CSS",
       "bytes": 105844,
-      "percent": 5.8
+      "percent": 5.7
     },
     {
       "name": "JavaScript",
@@ -77,19 +77,19 @@
     {
       "name": "Otros",
       "bytes": 6387,
-      "percent": 0.4
+      "percent": 0.3
     }
   ],
   "streaks": {
     "total": 672,
-    "current": 10,
+    "current": 11,
     "current_start": "2026-07-26",
-    "current_end": "2026-08-04",
+    "current_end": "2026-08-05",
     "longest": 19,
     "longest_start": "2025-10-15",
     "longest_end": "2025-11-02",
-    "days_tracked": 1312,
-    "active_days": 133,
+    "days_tracked": 1313,
+    "active_days": 134,
     "first_day": "2023-10-20",
     "exact_counts": true
   },

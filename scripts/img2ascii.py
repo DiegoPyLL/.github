@@ -7,6 +7,9 @@ Todo el procesamiento es local: la unica dependencia es Pillow.
 
 Acepta lo que abra Pillow (png, jpg, webp, ...) y ademas SVG con imagenes
 embebidas, que se rasterizan con svgraster.
+
+La unidad de trabajo es la celda: caracter + color de la imagen original. El
+texto plano descarta el color; el hero en SVG lo usa para pintar cada caracter.
 """
 
 from __future__ import annotations
@@ -15,7 +18,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageEnhance, ImageOps
+from PIL import Image, ImageOps
 
 import svgraster
 
@@ -28,8 +31,69 @@ RAMPS = {
     "shades": " .:░▒▓█",
 }
 
+# Una celda es el caracter elegido y el color de la imagen en ese punto. Las
+# celdas transparentes van sin color: son hueco, no pixel negro.
+Cell = tuple[str, tuple[int, int, int] | None]
+Row = list[Cell]
 
-def image_to_ascii(
+
+def _stretch(gray: Image.Image, hist: list[int]) -> Image.Image:
+    """Lleva el rango util del histograma a 0..255 (autocontrast con mascara)."""
+    used = [i for i, count in enumerate(hist) if count]
+    if len(used) < 2:
+        return gray
+    lo, hi = used[0], used[-1]
+    scale = 255.0 / (hi - lo)
+    return gray.point([min(255, max(0, round((v - lo) * scale))) for v in range(256)])
+
+
+def _apply_contrast(gray: Image.Image, factor: float, hist: list[int]) -> Image.Image:
+    """Separa los tonos alrededor de la media, calculada sobre el histograma dado."""
+    total = sum(hist)
+    if not total:
+        return gray
+    mean = sum(i * count for i, count in enumerate(hist)) / total
+    return gray.point(
+        [min(255, max(0, round(mean + (v - mean) * factor))) for v in range(256)]
+    )
+
+
+def _clamp(value: float) -> int:
+    return min(255, max(0, round(value)))
+
+
+def _tint(
+    rgb: tuple[int, int, int],
+    base: int,
+    toned: int,
+    saturation: float,
+    min_brightness: int,
+) -> tuple[int, int, int]:
+    """Color de la imagen llevado al tono que le toco al caracter.
+
+    El caracter sale de la luminancia ya ajustada (autocontrast, contrast,
+    invert), asi que el color se reescala con la misma razon: conserva el matiz
+    de la foto y acompana al glifo en vez de contradecirlo.
+
+    min_brightness comprime ese rango hacia arriba en vez de recortarlo. La
+    sombra ya la dibuja la densidad del glifo; si ademas el color se va a negro
+    el trazo desaparece contra el panel oscuro y el retrato se deshace.
+    """
+    target = min_brightness + toned * (255 - min_brightness) / 255.0
+    r, g, b = rgb
+    if base:
+        scale = target / base
+        r, g, b = _clamp(r * scale), _clamp(g * scale), _clamp(b * scale)
+    else:
+        # Negro puro no tiene matiz que escalar; queda gris del tono destino.
+        r = g = b = _clamp(target)
+    if saturation != 1.0:
+        lum = 0.2126 * r + 0.7152 * g + 0.0722 * b
+        r, g, b = (_clamp(lum + (c - lum) * saturation) for c in (r, g, b))
+    return r, g, b
+
+
+def image_to_cells(
     image: Image.Image,
     width: int = 40,
     ramp: str = RAMPS["standard"],
@@ -39,8 +103,10 @@ def image_to_ascii(
     contrast: float = 1.0,
     char_aspect: float = 0.5,
     alpha_threshold: int = 32,
-) -> str:
-    """Devuelve la imagen renderizada como texto.
+    saturation: float = 1.0,
+    min_brightness: int = 0,
+) -> list[Row]:
+    """Devuelve la imagen como filas de celdas (caracter + color).
 
     char_aspect compensa que las celdas de texto son mas altas que anchas.
     """
@@ -54,28 +120,56 @@ def image_to_ascii(
 
     alpha = image.getchannel("A")
     gray = image.convert("L")
-    if autocontrast:
-        gray = ImageOps.autocontrast(gray)
-    if contrast != 1.0:
-        gray = ImageEnhance.Contrast(gray).enhance(contrast)
-    if invert:
-        gray = ImageOps.invert(gray)
 
-    lum = gray.load()
+    # Los ajustes se miden solo sobre lo que se va a dibujar. En un recorte con
+    # fondo transparente el RGB de afuera suele ser negro, y si entra al
+    # histograma corre la media y termina aclarando al sujeto en vez de
+    # separarlo. Sin canal alfa la mascara cubre todo y no cambia nada.
+    visible = alpha.point([255 if v >= alpha_threshold else 0 for v in range(256)]).convert("1")
+    toned = gray
+    if autocontrast:
+        toned = _stretch(toned, toned.histogram(mask=visible))
+    if contrast != 1.0:
+        toned = _apply_contrast(toned, contrast, toned.histogram(mask=visible))
+    if invert:
+        toned = ImageOps.invert(toned)
+
+    lum = toned.load()
+    base = gray.load()
+    color = image.convert("RGB").load()
     mask = alpha.load()
     last = len(ramp) - 1
 
-    rows = []
+    rows: list[Row] = []
     for y in range(height):
-        row = []
+        row: Row = []
         for x in range(width):
             # Lo transparente queda como hueco, no como pixel negro.
             if mask[x, y] < alpha_threshold:
-                row.append(" ")
+                row.append((" ", None))
             else:
-                row.append(ramp[lum[x, y] * last // 255])
-        rows.append("".join(row).rstrip())
-    return "\n".join(rows)
+                char = ramp[lum[x, y] * last // 255]
+                row.append(
+                    (
+                        char,
+                        _tint(color[x, y], base[x, y], lum[x, y], saturation, min_brightness),
+                    )
+                )
+        while row and row[-1][0] == " ":
+            row.pop()
+        rows.append(row)
+    return rows
+
+
+def cells_to_text(rows: list[Row]) -> str:
+    return "\n".join("".join(char for char, _ in row) for row in rows)
+
+
+def image_to_ascii(
+    image: Image.Image, width: int = 40, ramp: str = RAMPS["standard"], **kwargs
+) -> str:
+    """Devuelve la imagen renderizada como texto, sin color."""
+    return cells_to_text(image_to_cells(image, width, ramp, **kwargs))
 
 
 def load_image(path: str | Path) -> Image.Image:
@@ -86,9 +180,13 @@ def load_image(path: str | Path) -> Image.Image:
     return Image.open(path)
 
 
-def render_file(path: str | Path, **kwargs) -> str:
+def render_cells(path: str | Path, **kwargs) -> list[Row]:
     with load_image(path) as img:
-        return image_to_ascii(img, **kwargs)
+        return image_to_cells(img, **kwargs)
+
+
+def render_file(path: str | Path, **kwargs) -> str:
+    return cells_to_text(render_cells(path, **kwargs))
 
 
 def main(argv: list[str] | None = None) -> int:

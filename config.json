@@ -5,18 +5,22 @@
   "ascii": {
     "source": "profile/assets/yo.png",
     "output": "profile/assets/ascii.txt",
-    "width": 34,
+    "width": 88,
     "ramp": "standard",
     "invert": false,
     "autocontrast": true,
     "contrast": 1.15,
-    "char_aspect": 0.5
+    "char_aspect": 0.42,
+    "color": true,
+    "saturation": 1.25,
+    "min_brightness": 80,
+    "font_size": 13
   },
 
   "identity": {
     "handle": "diego@github",
     "name": "Diego Peña y Lillo",
-    "role": "Backend & Data",
+    "studies": "Ingeniería Informática, esp. en Inteligencia Artificial",
     "location": "Chile",
     "working_on": "",
     "learning": "",

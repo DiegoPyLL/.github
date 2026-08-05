@@ -37,10 +37,10 @@ Opcionalmente exporta `GITHUB_TOKEN` para subir el limite de la API de 60 a
 
 | Script            | Que hace                                                                 |
 | ----------------- | ------------------------------------------------------------------------ |
-| `img2ascii.py`    | Convierte una imagen a ASCII art. Sirve suelto como CLI.                  |
+| `img2ascii.py`    | Convierte una imagen a celdas de ASCII con color. Sirve suelto como CLI.  |
 | `svgraster.py`    | Rasteriza SVG con imagenes embebidas para que `img2ascii` los acepte.     |
 | `github_data.py`  | Baja perfil, repos, lenguajes, calendario de contribuciones y logros.     |
-| `svgkit.py`       | Dibuja la barra de lenguajes y los badges del stack como SVG locales.     |
+| `svgkit.py`       | Dibuja el hero en color, la barra de lenguajes y los badges, como SVG.    |
 | `render.py`       | Arma los bloques de texto: panel tipo neofetch, rachas, logros.           |
 | `build_readme.py` | Orquesta todo y reemplaza los bloques marcados de `profile/README.md`.    |
 
@@ -53,6 +53,39 @@ python scripts/img2ascii.py foto.jpg -w 60 --ramp blocks --autocontrast
 
 Rampas disponibles: `minimal`, `standard`, `blocks`, `shades`. Estan pensadas
 para fondo oscuro; usa `--invert` si el fondo es claro.
+
+## El hero en color
+
+Un bloque de codigo en markdown se pinta de un solo color, asi que el hero se
+publica como `profile/assets/hero.svg`: la misma grilla de caracteres, pero
+cada uno con el color que tenia ese punto de la foto.
+
+Son dos tarjetas separadas: a la izquierda el retrato, a la derecha el panel de
+datos. El panel a su vez va partido en dos bloques, con el titulo
+`Estadisticas · al dia de hoy` y su regla como separador:
+
+- **Arriba, lo fijo** (`render._identity_rows`): nombre, estudios, ubicacion y
+  demas campos de `identity` en `config.json`. Solo cambian si se edita el
+  archivo. Los valores largos se parten solos a `render.VALUE_WRAP` columnas.
+- **Abajo, lo vivo** (`render._stat_rows`): repos, estrellas, seguidores,
+  contribuciones, PRs, issues, rachas, miembro desde y tiempo en GitHub. Esto
+  lo vuelve a bajar de la API el workflow diario de las 06:00 UTC.
+
+Detalles que importan si se toca:
+
+- **El panel va oscuro en los dos temas.** La rampa da glifos densos a los
+  pixeles claros; sobre fondo blanco el retrato se leeria en negativo.
+- **`min_brightness` levanta el piso del color.** La sombra ya la dibuja la
+  densidad del glifo. Si ademas el color se va a negro, el trazo desaparece
+  contra el panel y el retrato se deshace.
+- **`char_aspect` tiene que ser el mismo** con que se genero el ASCII: define
+  el alto de linea del SVG y es lo que evita que la cara salga estirada.
+- **Cada fila lleva `textLength`**, asi que las columnas cuadran aunque el
+  visor resuelva otra monoespaciada.
+
+Con `"color": false` el hero vuelve al cuadro de texto, que es el unico formato
+donde el ASCII sigue siendo texto seleccionable. `ascii.txt` se escribe igual
+en los dos casos.
 
 ## SVG como origen
 
@@ -78,9 +111,13 @@ Todo lo editable vive en `config.json`:
 - `repo` — nombre del repositorio, solo para armar los enlaces del pie.
 - `ascii` — imagen de origen, ancho, rampa y ajustes de contraste. Admite png,
   jpg, webp y svg. Si no existe el archivo se descarga el avatar publico de
-  GitHub (salvo que la ruta sea `.svg`, que es raster y no aplica).
-- `identity` — los datos personales que salen al lado del ASCII. Los campos
-  vacios simplemente no se muestran.
+  GitHub (salvo que la ruta sea `.svg`, que es raster y no aplica). Ademas:
+  `color` publica el hero como SVG en vez de texto, `saturation` sube el matiz
+  de la foto, `min_brightness` (0-255) evita que los caracteres oscuros se
+  pierdan contra el panel y `font_size` fija el tamano de la grilla.
+- `identity` — los datos personales del bloque de arriba del panel (`handle`,
+  `name`, `studies`, `location`, `working_on`, `learning`, `ask_me_about`,
+  `collaborate_on`, `fun_fact`). Los campos vacios simplemente no se muestran.
 - `tech` — categorias y tecnologias de los badges.
 - `tech_colors` — sobrescribe el color de un badge puntual.
 - `languages` — cuantos lenguajes mostrar, cuales excluir, si contar forks.

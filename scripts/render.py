@@ -13,9 +13,17 @@ from datetime import date
 
 MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
 
-# Los cuadros se estiran hasta el contenido mas ancho, dentro de estos limites.
+# Los cuadros se estiran hasta el contenido mas ancho. Solo hay piso, no techo:
+# un techo recortaria el marco sin recortar el texto y las lineas se saldrian
+# de la caja. Para achicar el panel hay que bajar "ascii.width" en config.json.
 WIDTH_MIN = 74
-WIDTH_MAX = 108
+
+# Los valores largos (estudios, "trabajando en") se parten aqui para que el
+# panel no se estire a lo ancho por una sola fila.
+VALUE_WRAP = 30
+
+# Titulo del segundo bloque del panel: lo que el workflow refresca a diario.
+STATS_HEADING = "Estadísticas · al día de hoy"
 
 FALLBACK_ASCII = """\
         ▄▄▄▄▄▄▄▄▄▄▄
@@ -104,19 +112,59 @@ def _bar(level: int, max_level: int, cells: int = 12) -> str:
 
 
 def _clamp_width(natural: int) -> int:
-    return max(WIDTH_MIN, min(WIDTH_MAX, natural))
+    return max(WIDTH_MIN, natural)
 
 
 # ----------------------------------------------------------------- hero (perfil)
 
 
-def _info_rows(stats: dict, config: dict) -> list[tuple[str, str]]:
+def _wrap_rows(rows: list[tuple[str, str]], width: int = VALUE_WRAP) -> list[tuple[str, str]]:
+    """Parte los valores largos en varias filas; la continuacion va sin etiqueta."""
+    out: list[tuple[str, str]] = []
+    for label, value in rows:
+        line = ""
+        first = True
+        for word in value.split():
+            candidate = f"{line} {word}".strip()
+            if line and len(candidate) > width:
+                out.append((label if first else "", line))
+                first = False
+                line = word
+            else:
+                line = candidate
+        out.append((label if first else "", line))
+    return out
+
+
+def _time_on_github(profile: dict) -> str | None:
+    """Antiguedad de la cuenta en años y meses, no solo el año redondeado."""
+    created = profile.get("created_at")
+    if not created:
+        return None
+    try:
+        start = date.fromisoformat(created[:10])
+    except ValueError:
+        return None
+
+    today = date.today()
+    months = (today.year - start.year) * 12 + (today.month - start.month)
+    if today.day < start.day:
+        months -= 1
+    months = max(0, months)
+    years, rest = divmod(months, 12)
+
+    parts = []
+    if years:
+        parts.append(f"{years} año{'s' if years != 1 else ''}")
+    if rest or not years:
+        parts.append(f"{rest} mes{'es' if rest != 1 else ''}")
+    return " y ".join(parts)
+
+
+def _identity_rows(config: dict, stats: dict) -> list[tuple[str, str]]:
+    """Datos fijos: los que solo cambian cuando se edita config.json."""
     identity = config.get("identity", {})
     profile = stats.get("profile", {})
-    repos = stats.get("repos", {})
-    streaks_data = stats.get("streaks", {})
-    counts = stats.get("counts", {})
-
     rows: list[tuple[str, str]] = []
 
     def add(label: str, value) -> None:
@@ -124,7 +172,7 @@ def _info_rows(stats: dict, config: dict) -> list[tuple[str, str]]:
             rows.append((label, str(value)))
 
     add("Nombre", identity.get("name") or profile.get("name"))
-    add("Rol", identity.get("role"))
+    add("Estudios", identity.get("studies") or identity.get("role"))
     add("Ubicación", identity.get("location") or profile.get("location"))
     add("Trabajando en", identity.get("working_on"))
     add("Aprendiendo", identity.get("learning"))
@@ -132,34 +180,59 @@ def _info_rows(stats: dict, config: dict) -> list[tuple[str, str]]:
     add("Colaboro en", identity.get("collaborate_on"))
     add("Dato random", identity.get("fun_fact"))
 
-    if rows:
-        rows.append(("", ""))
+    return _wrap_rows(rows)
+
+
+def _stat_rows(stats: dict) -> list[tuple[str, str]]:
+    """Datos vivos: los que el workflow diario vuelve a bajar de la API."""
+    profile = stats.get("profile", {})
+    repos = stats.get("repos", {})
+    streaks_data = stats.get("streaks", {})
+    counts = stats.get("counts", {})
+    rows: list[tuple[str, str]] = []
+
+    def add(label: str, value) -> None:
+        if value not in (None, "", 0, "—"):
+            rows.append((label, str(value)))
 
     add("Repos", _num(repos.get("own_repos")))
     add("Estrellas", _num(repos.get("stars")))
     add("Seguidores", _num(profile.get("followers")))
     add("Contribuciones", _num(streaks_data.get("total")))
-    if counts.get("pull_requests"):
-        add("Pull requests", _num(counts["pull_requests"]))
+    add("Pull requests", _num(counts.get("pull_requests")))
+    add("Issues", _num(counts.get("issues")))
     if streaks_data.get("current"):
-        add("Racha", f"{streaks_data['current']} días")
-    if stats.get("years_on_github"):
-        years = stats["years_on_github"]
-        add("En GitHub", f"{years} año{'s' if years != 1 else ''}")
+        add("Racha actual", f"{streaks_data['current']} días")
+    if streaks_data.get("longest"):
+        add("Racha más larga", f"{streaks_data['longest']} días")
+    add("Miembro desde", _short_date(profile.get("created_at")))
+    add("Tiempo en GitHub", _time_on_github(profile))
 
     return rows
+
+
+def hero_panel(stats: dict, config: dict) -> tuple[str, list[tuple[str, str]], list[tuple[str, str]]]:
+    """Handle, datos fijos y estadisticas del hero: los usan la version texto y la SVG."""
+    handle = config.get("identity", {}).get("handle") or stats.get("profile", {}).get("login", "")
+    return handle, _identity_rows(config, stats), _stat_rows(stats)
+
+
+def _rows_to_lines(rows: list[tuple[str, str]], label_width: int) -> list[str]:
+    return [f"{_pad(label, label_width)}   {value}" for label, value in rows]
 
 
 def _hero_lines(stats: dict, config: dict, ascii_art: str | None) -> list[str]:
     art_lines = (ascii_art or FALLBACK_ASCII).rstrip("\n").split("\n")
     art_width = max((len(line) for line in art_lines), default=0)
 
-    handle = config.get("identity", {}).get("handle") or stats.get("profile", {}).get("login", "")
-    rows = _info_rows(stats, config)
-    label_width = max((len(label) for label, _ in rows), default=0)
+    handle, identity, live = hero_panel(stats, config)
+    label_width = max((len(label) for label, _ in identity + live), default=0)
 
     info = [handle, "─" * max(len(handle), 28)]
-    info += ["" if not label else f"{_pad(label, label_width)}   {value}" for label, value in rows]
+    info += _rows_to_lines(identity, label_width)
+    if identity and live:
+        info += ["", STATS_HEADING, "─" * max(len(STATS_HEADING), 28)]
+    info += _rows_to_lines(live, label_width)
 
     # El bloque de datos se centra respecto al dibujo cuando este es mas alto.
     offset = max(0, (len(art_lines) - len(info)) // 2)
@@ -208,7 +281,13 @@ def _streak_cards(stats: dict) -> list[list[str]] | None:
 # --------------------------------------------------------------------- logros
 
 
-def _achievement_lines(stats: dict) -> list[str] | None:
+def _achievement_lines(stats: dict, inner: int | None = None) -> list[str] | None:
+    """Filas de logros.
+
+    Con `inner` la barra se estira hasta llenar el cuadro y la meta queda
+    alineada al borde derecho: el espacio sobrante se gasta en informacion en
+    vez de quedar en blanco.
+    """
     items = stats.get("achievements") or []
     if not items:
         return None
@@ -216,17 +295,28 @@ def _achievement_lines(stats: dict) -> list[str] | None:
     name_w = max(len(i["title"]) for i in items)
     value_w = max(len(_num(i["value"])) for i in items)
 
-    lines = []
+    goals = []
     for item in items:
         if item.get("next"):
-            goal = f"faltan {_num(item['next'] - item['value'])} para {item.get('next_tier', '—')}"
+            goals.append(
+                f"faltan {_num(item['next'] - item['value'])} para {item.get('next_tier', '—')}"
+            )
         else:
-            goal = "rango máximo"
+            goals.append("rango máximo")
+    goal_w = max(len(g) for g in goals)
+
+    # nombre + 3 + valor + 3 + "[ X ]" + 3
+    prefix_w = name_w + value_w + 16
+    cells = max(12, inner - prefix_w - goal_w - 3) if inner else 12
+
+    lines = []
+    for item, goal in zip(items, goals):
         lines.append(
             f"{_pad(item['title'], name_w)}   "
             f"{_num(item['value']).rjust(value_w)}   "
             f"[ {item['tier'].center(3)} ]   "
-            f"{_bar(item['level'], item['max_level'])}   {goal}"
+            f"{_bar(item['level'], item['max_level'], cells)}   "
+            f"{goal.rjust(goal_w)}"
         )
     return lines
 
@@ -267,6 +357,9 @@ def build_blocks(stats: dict, config: dict, ascii_art: str | None) -> dict[str, 
         + [max(len(line) for card in (cards or [[""]]) for line in card) * 3 + 8]
     )
     width = _clamp_width(natural + 4)
+
+    # Ya con el ancho definitivo, los logros se rearman justificados al borde.
+    ach_lines = _achievement_lines(stats, inner=width - 4)
 
     return {
         "hero": _fence(_frame(hero_lines, width)),

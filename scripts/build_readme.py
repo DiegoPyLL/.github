@@ -24,7 +24,7 @@ import github_data
 import render
 import svgkit
 import svgraster
-from img2ascii import RAMPS, render_file
+from img2ascii import RAMPS, Row, cells_to_text, render_cells
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -93,7 +93,8 @@ def ensure_avatar(path: Path, stats: dict) -> Path | None:
     return path
 
 
-def build_ascii(config: dict, stats: dict) -> str | None:
+def build_ascii(config: dict, stats: dict) -> list[Row] | None:
+    """Convierte la imagen a celdas y deja el texto plano en ascii.txt."""
     cfg = config.get("ascii", {})
     source = ROOT / cfg.get("source", "profile/assets/avatar.png")
     source = ensure_avatar(source, stats)
@@ -102,7 +103,7 @@ def build_ascii(config: dict, stats: dict) -> str | None:
         return None
 
     try:
-        art = render_file(
+        cells = render_cells(
             source,
             width=cfg.get("width", 34),
             ramp=RAMPS.get(cfg.get("ramp", "standard"), RAMPS["standard"]),
@@ -110,6 +111,8 @@ def build_ascii(config: dict, stats: dict) -> str | None:
             autocontrast=cfg.get("autocontrast", True),
             contrast=cfg.get("contrast", 1.0),
             char_aspect=cfg.get("char_aspect", 0.5),
+            saturation=cfg.get("saturation", 1.0),
+            min_brightness=cfg.get("min_brightness", 80),
         )
     except svgraster.SVGError as exc:
         # Un SVG que no se puede rasterizar no debe voltear todo el build.
@@ -118,8 +121,35 @@ def build_ascii(config: dict, stats: dict) -> str | None:
 
     out = ROOT / cfg.get("output", "profile/assets/ascii.txt")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(art + "\n", encoding="utf-8")
-    return art
+    out.write_text(cells_to_text(cells) + "\n", encoding="utf-8")
+    return cells
+
+
+def write_hero_svg(config: dict, stats: dict, cells: list[Row] | None) -> bool:
+    """Escribe el hero en color. Devuelve si el README debe apuntar al SVG.
+
+    Sin imagen o con "color": false se cae al cuadro de texto de siempre, que
+    es el unico formato donde el ASCII sigue siendo texto seleccionable.
+    """
+    cfg = config.get("ascii", {})
+    if not cells or not cfg.get("color", True):
+        return False
+
+    handle, identity, live = render.hero_panel(stats, config)
+    ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    (ASSETS_DIR / "hero.svg").write_text(
+        svgkit.ascii_hero(
+            cells,
+            handle,
+            identity,
+            live,
+            heading=render.STATS_HEADING,
+            font_size=cfg.get("font_size", 13.0),
+            char_aspect=cfg.get("char_aspect", 0.5),
+        ),
+        encoding="utf-8",
+    )
+    return True
 
 
 def write_svgs(config: dict, stats: dict) -> None:
@@ -155,7 +185,9 @@ def main(argv: list[str] | None = None) -> int:
             json.dumps(stats, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
         )
 
-    art = build_ascii(config, stats)
+    cells = build_ascii(config, stats)
+    art = cells_to_text(cells) if cells else None
+    colored_hero = write_hero_svg(config, stats, cells)
     write_svgs(config, stats)
 
     readme = PROFILE_DIR / "README.md"
@@ -164,7 +196,13 @@ def main(argv: list[str] | None = None) -> int:
         print("> README sin marcadores, se escribe la plantilla base", file=sys.stderr)
         text = TEMPLATE
 
+    # El hero de texto se arma igual aunque se publique el SVG: es el que fija
+    # el ancho comun de los cuadros de rachas y logros.
     blocks = render.build_blocks(stats, config, art)
+    if colored_hero:
+        blocks["hero"] = (
+            '<img src="assets/hero.svg" alt="Retrato en ASCII y datos del perfil" width="100%">'
+        )
     blocks["languages"] = (
         '<img src="assets/languages.svg" alt="Distribución de lenguajes" width="100%">'
     )

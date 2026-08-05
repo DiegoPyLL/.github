@@ -1,0 +1,43 @@
+{
+  "github_user": "DiegoPyLL",
+
+  "ascii": {
+    "source": "assets/avatar.png",
+    "output": "assets/ascii.txt",
+    "width": 34,
+    "ramp": "standard",
+    "invert": false,
+    "autocontrast": true,
+    "contrast": 1.15,
+    "char_aspect": 0.5
+  },
+
+  "identity": {
+    "handle": "diego@github",
+    "name": "Diego Peña y Lillo",
+    "role": "Backend & Data",
+    "location": "Chile",
+    "working_on": "",
+    "learning": "",
+    "ask_me_about": "",
+    "collaborate_on": "",
+    "fun_fact": ""
+  },
+
+  "tech": {
+    "Lenguajes": ["Kotlin", "Python", "Java", "TypeScript", "SQL"],
+    "Backend": ["Spring", "FastAPI", "Node.js"],
+    "Frontend": ["React", "Next.js", "Astro", "Tailwind CSS"],
+    "Datos": ["Pandas", "NumPy", "Matplotlib", "Jupyter"],
+    "Bases de datos": ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Redis"],
+    "Infra": ["AWS", "Docker", "Vercel", "Git", "GitHub", "Linux"]
+  },
+
+  "tech_colors": {},
+
+  "languages": {
+    "max_shown": 8,
+    "exclude": [],
+    "include_forks": false
+  }
+}

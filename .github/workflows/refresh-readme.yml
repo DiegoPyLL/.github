@@ -1,0 +1,70 @@
+name: Refrescar README
+
+on:
+  schedule:
+    # Todos los días a las 06:00 UTC (03:00 en Chile continental).
+    # El cron de Actions no es puntual: puede correr con algunos minutos de atraso.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config.json"
+      - "scripts/**"
+      - "requirements.txt"
+      - ".github/workflows/refresh-readme.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-readme
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - run: pip install -r requirements.txt
+
+      - name: Generar README
+        env:
+          # Sube el límite de la API de 60 a 5000 peticiones/hora.
+          # Actions ya provee este token, no hay que crear ningún secreto.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/build_readme.py
+
+      - name: Commitear cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets data
+
+          if git diff --staged --quiet; then
+            echo "Sin cambios que publicar."
+            exit 0
+          fi
+
+          git commit -m "chore: refrescar estadísticas del README"
+
+          # Reintento por si alguien empujó algo mientras corría el job.
+          for intento in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rechazado (intento $intento), rebase y reintento..."
+            git pull --rebase --autostash origin main || exit 1
+          done
+
+          echo "::error::No se pudo empujar el README tras 3 intentos."
+          exit 1

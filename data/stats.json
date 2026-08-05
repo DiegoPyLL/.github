@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-08-04T20:49:32-04:00",
+  "profile": {
+    "login": "DiegoPyLL",
+    "name": "Diego Peña y Lillo",
+    "bio": null,
+    "company": null,
+    "location": "Chile",
+    "blog": "",
+    "avatar_url": "https://avatars.githubusercontent.com/u/148589781?v=4",
+    "followers": 5,
+    "following": 5,
+    "public_repos": 6,
+    "created_at": "2023-10-20T20:55:28Z"
+  },
+  "repos": {
+    "public_repos": 6,
+    "own_repos": 6,
+    "forks_owned": 0,
+    "stars": 2,
+    "forks_received": 0,
+    "watchers": 2,
+    "top_repos": [
+      {
+        "name": "CarFlip",
+        "stars": 1,
+        "url": "https://github.com/DiegoPyLL/CarFlip"
+      },
+      {
+        "name": "FlujoPRT",
+        "stars": 1,
+        "url": "https://github.com/DiegoPyLL/FlujoPRT"
+      }
+    ]
+  },
+  "languages": [
+    {
+      "name": "TypeScript",
+      "bytes": 578524,
+      "percent": 31.8
+    },
+    {
+      "name": "Python",
+      "bytes": 407290,
+      "percent": 22.4
+    },
+    {
+      "name": "Astro",
+      "bytes": 352322,
+      "percent": 19.4
+    },
+    {
+      "name": "Kotlin",
+      "bytes": 192077,
+      "percent": 10.6
+    },
+    {
+      "name": "HTML",
+      "bytes": 149706,
+      "percent": 8.2
+    },
+    {
+      "name": "CSS",
+      "bytes": 105844,
+      "percent": 5.8
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 21800,
+      "percent": 1.2
+    },
+    {
+      "name": "Shell",
+      "bytes": 3179,
+      "percent": 0.2
+    },
+    {
+      "name": "Otros",
+      "bytes": 6387,
+      "percent": 0.4
+    }
+  ],
+  "streaks": {
+    "total": 672,
+    "current": 10,
+    "current_start": "2026-07-26",
+    "current_end": "2026-08-04",
+    "longest": 19,
+    "longest_start": "2025-10-15",
+    "longest_end": "2025-11-02",
+    "days_tracked": 1312,
+    "active_days": 133,
+    "first_day": "2023-10-20",
+    "exact_counts": true
+  },
+  "counts": {
+    "pull_requests": 14,
+    "merged_prs": 12,
+    "issues": 68
+  },
+  "years_on_github": 2,
+  "achievements": [
+    {
+      "title": "Commits",
+      "value": 672,
+      "tier": "A",
+      "level": 3,
+      "max_level": 6,
+      "next": 1000,
+      "next_tier": "S"
+    },
+    {
+      "title": "Repos",
+      "value": 6,
+      "tier": "B",
+      "level": 2,
+      "max_level": 6,
+      "next": 10,
+      "next_tier": "A"
+    },
+    {
+      "title": "Estrellas",
+      "value": 2,
+      "tier": "C",
+      "level": 1,
+      "max_level": 6,
+      "next": 10,
+      "next_tier": "B"
+    },
+    {
+      "title": "Seguidores",
+      "value": 5,
+      "tier": "C",
+      "level": 1,
+      "max_level": 6,
+      "next": 10,
+      "next_tier": "B"
+    },
+    {
+      "title": "Pull requests",
+      "value": 14,
+      "tier": "B",
+      "level": 2,
+      "max_level": 6,
+      "next": 50,
+      "next_tier": "A"
+    },
+    {
+      "title": "Issues",
+      "value": 68,
+      "tier": "S",
+      "level": 4,
+      "max_level": 6,
+      "next": 100,
+      "next_tier": "SS"
+    },
+    {
+      "title": "Experiencia",
+      "value": 2,
+      "tier": "B",
+      "level": 2,
+      "max_level": 6,
+      "next": 3,
+      "next_tier": "A"
+    }
+  ]
+}

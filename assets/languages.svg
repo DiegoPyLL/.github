@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="108" viewBox="0 0 860 108" role="img">
+  <style>
+    text { font-family: "Segoe UI", Ubuntu, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+    .fg { fill: #1F2328; }
+    .muted { fill: #59636E; }
+    .track { fill: #D1D9E0; }
+    @media (prefers-color-scheme: dark) {
+      .fg { fill: #E6EDF3; }
+      .muted { fill: #9198A1; }
+      .track { fill: #30363D; }
+    }
+  </style>
+  <clipPath id="round"><rect x="0" y="0" width="860" height="14" rx="7.0"/></clipPath>
+  <rect class="track" x="0" y="0" width="860" height="14" rx="7.0"/>
+  <g clip-path="url(#round)">
+    <rect x="0.00" y="0" width="273.48" height="14" fill="#3178C6"/>
+    <rect x="273.48" y="0" width="192.64" height="14" fill="#3572A5"/>
+    <rect x="466.12" y="0" width="166.84" height="14" fill="#FF5D01"/>
+    <rect x="632.96" y="0" width="91.16" height="14" fill="#A97BFF"/>
+    <rect x="724.12" y="0" width="70.52" height="14" fill="#E34C26"/>
+    <rect x="794.64" y="0" width="49.88" height="14" fill="#663399"/>
+    <rect x="844.52" y="0" width="10.32" height="14" fill="#F1E05A"/>
+    <rect x="854.84" y="0" width="1.72" height="14" fill="#89E051"/>
+    <rect x="856.56" y="0" width="3.44" height="14" fill="#8B949E"/>
+  </g>
+  <circle cx="6.0" cy="42.0" r="6" fill="#3178C6"/>
+  <text class="fg" x="20.0" y="47.0" font-size="13" font-weight="600">TypeScript</text>
+  <text class="muted" x="94.9" y="47.0" font-size="13">31.8%</text>
+  <circle cx="292.7" cy="42.0" r="6" fill="#3572A5"/>
+  <text class="fg" x="306.7" y="47.0" font-size="13" font-weight="600">Python</text>
+  <text class="muted" x="356.1" y="47.0" font-size="13">22.4%</text>
+  <circle cx="579.3" cy="42.0" r="6" fill="#FF5D01"/>
+  <text class="fg" x="593.3" y="47.0" font-size="13" font-weight="600">Astro</text>
+  <text class="muted" x="632.4" y="47.0" font-size="13">19.4%</text>
+  <circle cx="6.0" cy="66.0" r="6" fill="#A97BFF"/>
+  <text class="fg" x="20.0" y="71.0" font-size="13" font-weight="600">Kotlin</text>
+  <text class="muted" x="63.7" y="71.0" font-size="13">10.6%</text>
+  <circle cx="292.7" cy="66.0" r="6" fill="#E34C26"/>
+  <text class="fg" x="306.7" y="71.0" font-size="13" font-weight="600">HTML</text>
+  <text class="muted" x="350.4" y="71.0" font-size="13">8.2%</text>
+  <circle cx="579.3" cy="66.0" r="6" fill="#663399"/>
+  <text class="fg" x="593.3" y="71.0" font-size="13" font-weight="600">CSS</text>
+  <text class="muted" x="625.1" y="71.0" font-size="13">5.8%</text>
+  <circle cx="6.0" cy="90.0" r="6" fill="#F1E05A"/>
+  <text class="fg" x="20.0" y="95.0" font-size="13" font-weight="600">JavaScript</text>
+  <text class="muted" x="94.9" y="95.0" font-size="13">1.2%</text>
+  <circle cx="292.7" cy="90.0" r="6" fill="#89E051"/>
+  <text class="fg" x="306.7" y="95.0" font-size="13" font-weight="600">Shell</text>
+  <text class="muted" x="345.7" y="95.0" font-size="13">0.2%</text>
+  <circle cx="579.3" cy="90.0" r="6" fill="#8B949E"/>
+  <text class="fg" x="593.3" y="95.0" font-size="13" font-weight="600">Otros</text>
+  <text class="muted" x="632.4" y="95.0" font-size="13">0.4%</text>
+</svg>

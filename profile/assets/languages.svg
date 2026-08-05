@@ -14,31 +14,31 @@
   <clipPath id="round"><rect x="0" y="0" width="860" height="14" rx="7.0"/></clipPath>
   <rect class="track" x="0" y="0" width="860" height="14" rx="7.0"/>
   <g clip-path="url(#round)">
-    <rect x="0.00" y="0" width="267.46" height="14" fill="#3178C6"/>
-    <rect x="267.46" y="0" width="207.26" height="14" fill="#3572A5"/>
-    <rect x="474.72" y="0" width="163.40" height="14" fill="#FF5D01"/>
-    <rect x="638.12" y="0" width="88.58" height="14" fill="#A97BFF"/>
-    <rect x="726.70" y="0" width="69.66" height="14" fill="#E34C26"/>
-    <rect x="796.36" y="0" width="49.02" height="14" fill="#663399"/>
-    <rect x="845.38" y="0" width="10.32" height="14" fill="#F1E05A"/>
+    <rect x="0.00" y="0" width="265.47" height="14" fill="#3178C6"/>
+    <rect x="265.47" y="0" width="212.21" height="14" fill="#3572A5"/>
+    <rect x="477.68" y="0" width="161.52" height="14" fill="#FF5D01"/>
+    <rect x="639.20" y="0" width="88.49" height="14" fill="#A97BFF"/>
+    <rect x="727.69" y="0" width="68.73" height="14" fill="#E34C26"/>
+    <rect x="796.42" y="0" width="48.97" height="14" fill="#663399"/>
+    <rect x="845.39" y="0" width="10.31" height="14" fill="#F1E05A"/>
     <rect x="855.70" y="0" width="1.72" height="14" fill="#89E051"/>
     <rect x="857.42" y="0" width="2.58" height="14" fill="#8B949E"/>
   </g>
   <circle cx="6.0" cy="42.0" r="6" fill="#3178C6"/>
   <text class="fg" x="20.0" y="47.0" font-size="13" font-weight="600">TypeScript</text>
-  <text class="muted" x="94.9" y="47.0" font-size="13">31.1%</text>
+  <text class="muted" x="94.9" y="47.0" font-size="13">30.9%</text>
   <circle cx="292.7" cy="42.0" r="6" fill="#3572A5"/>
   <text class="fg" x="306.7" y="47.0" font-size="13" font-weight="600">Python</text>
-  <text class="muted" x="356.1" y="47.0" font-size="13">24.1%</text>
+  <text class="muted" x="356.1" y="47.0" font-size="13">24.7%</text>
   <circle cx="579.3" cy="42.0" r="6" fill="#FF5D01"/>
   <text class="fg" x="593.3" y="47.0" font-size="13" font-weight="600">Astro</text>
-  <text class="muted" x="632.4" y="47.0" font-size="13">19.0%</text>
+  <text class="muted" x="632.4" y="47.0" font-size="13">18.8%</text>
   <circle cx="6.0" cy="66.0" r="6" fill="#A97BFF"/>
   <text class="fg" x="20.0" y="71.0" font-size="13" font-weight="600">Kotlin</text>
   <text class="muted" x="63.7" y="71.0" font-size="13">10.3%</text>
   <circle cx="292.7" cy="66.0" r="6" fill="#E34C26"/>
   <text class="fg" x="306.7" y="71.0" font-size="13" font-weight="600">HTML</text>
-  <text class="muted" x="350.4" y="71.0" font-size="13">8.1%</text>
+  <text class="muted" x="350.4" y="71.0" font-size="13">8.0%</text>
   <circle cx="579.3" cy="66.0" r="6" fill="#663399"/>
   <text class="fg" x="593.3" y="71.0" font-size="13" font-weight="600">CSS</text>
   <text class="muted" x="625.1" y="71.0" font-size="13">5.7%</text>

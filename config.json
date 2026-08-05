@@ -3,7 +3,7 @@
   "repo": ".github",
 
   "ascii": {
-    "source": "profile/assets/yo.png",
+    "source": "profile/assets/yo.svg",
     "output": "profile/assets/ascii.txt",
     "width": 88,
     "ramp": "standard",

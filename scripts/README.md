@@ -18,10 +18,13 @@ profile/assets/          avatar, ascii.txt y los SVG             (regenerado)
 scripts/                 los generadores
 ```
 
-Los assets viven dentro de `profile/` a proposito: la portada se referencia a
-si misma con rutas relativas simples (`assets/languages.svg`), sin `../`, que
-es lo unico que resuelve bien cuando GitHub la renderiza fuera del arbol del
-repositorio.
+Los assets viven dentro de `profile/` para mantener todo junto, pero la
+portada los referencia con URLs absolutas de `raw.githubusercontent.com`
+(`render.raw_asset_base`), no con rutas relativas: cuando GitHub renderiza
+`profile/README.md` como pagina de perfil, resuelve las rutas relativas de
+imagenes contra la raiz del repo (no contra `profile/`), asi que
+`assets/languages.svg` termina apuntando a `<repo>/assets/languages.svg`, que
+no existe.
 
 ## Uso
 

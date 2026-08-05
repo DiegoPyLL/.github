@@ -285,14 +285,29 @@ def quote(config: dict) -> str:
 
 # -------------------------------------------------------------- repos principales
 
-def pinned_repos(stats: dict) -> str:
+def raw_asset_base(config: dict) -> str:
+    """URL base de raw.githubusercontent.com para los assets de profile/.
+
+    La portada del perfil resuelve las rutas relativas de las imagenes
+    contra la raiz del repo, no contra profile/, asi que una ruta relativa
+    simple como "assets/hero.svg" queda rota ahi (aunque funcione al ver
+    profile/README.md como blob normal). Usar URLs absolutas evita el problema
+    en cualquier contexto de render.
+    """
+    user = config.get("github_user", "")
+    repo = config.get("repo", ".github")
+    return f"https://raw.githubusercontent.com/{user}/{repo}/main/profile/assets"
+
+
+def pinned_repos(stats: dict, config: dict) -> str:
     """Devuelve el marcador de imagen (el SVG se genera en build_readme.py)."""
     # El SVG se genera en build_readme.py y se embebe aqui.
     # Esta funcion solo devuelve un placeholder.
     repos = stats.get("pinned_repos") or []
     if not repos:
         return "_Sin repos pinneados._"
-    return '<img src="assets/pinned-repos.svg" alt="Repositorios pinneados" width="100%">'
+    base = raw_asset_base(config)
+    return f'<img src="{base}/pinned-repos.svg" alt="Repositorios pinneados" width="100%">'
 
 # ---------------------------------------------------------------------- footer
 
@@ -327,7 +342,7 @@ def build_blocks(stats: dict, config: dict, ascii_art: str | None) -> dict[str, 
 
     return {
         "hero": _fence(_frame(hero_lines, width)),
-        "repos": pinned_repos(stats),
+        "repos": pinned_repos(stats, config),
         "quote": quote(config),
         "footer": footer(stats, config),
     }

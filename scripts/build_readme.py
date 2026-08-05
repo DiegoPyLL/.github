@@ -28,9 +28,11 @@ from img2ascii import RAMPS, Row, cells_to_text, render_cells
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# GitHub renderiza profile/README.md como portada del perfil de la organizacion.
-# Los assets viven dentro de esa misma carpeta para poder referenciarlos con
-# rutas relativas simples, sin "../", que es lo que aguanta ese render.
+# GitHub renderiza profile/README.md como portada del perfil de la organizacion,
+# y ahi las rutas relativas de imagenes se resuelven contra la raiz del repo (no
+# contra profile/), asi que las imagenes se referencian con URLs absolutas de
+# raw.githubusercontent.com (ver render.raw_asset_base). Los assets igual viven
+# en esta carpeta para mantener todo junto.
 PROFILE_DIR = ROOT / "profile"
 ASSETS_DIR = PROFILE_DIR / "assets"
 
@@ -215,19 +217,20 @@ def main(argv: list[str] | None = None) -> int:
     # El hero de texto se arma igual aunque se publique el SVG: es el respaldo
     # para cuando no hay imagen de origen o se apaga el color.
     blocks = render.build_blocks(stats, config, art)
+    raw_base = render.raw_asset_base(config)
     if colored_hero:
         blocks["hero"] = (
-            '<img src="assets/hero.svg" alt="Retrato en ASCII y datos del perfil" width="100%">'
+            f'<img src="{raw_base}/hero.svg" alt="Retrato en ASCII y datos del perfil" width="100%">'
         )
     blocks["streaks"] = (
-        '<img src="assets/streaks.svg" alt="Rachas de contribución" width="100%">'
+        f'<img src="{raw_base}/streaks.svg" alt="Rachas de contribución" width="100%">'
         if has_streaks
         else "_Sin datos de contribuciones._"
     )
     blocks["languages"] = (
-        '<img src="assets/languages.svg" alt="Distribución de lenguajes" width="100%">'
+        f'<img src="{raw_base}/languages.svg" alt="Distribución de lenguajes" width="100%">'
     )
-    blocks["tech"] = '<img src="assets/tech-stack.svg" alt="Stack de tecnologías" width="100%">'
+    blocks["tech"] = f'<img src="{raw_base}/tech-stack.svg" alt="Stack de tecnologías" width="100%">'
 
     for name, content in blocks.items():
         text = replace_block(text, name, content)

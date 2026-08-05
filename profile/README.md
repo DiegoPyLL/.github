@@ -1,5 +1,5 @@
 <!-- BEGIN:hero -->
-<img src="assets/hero.svg" alt="Retrato en ASCII y datos del perfil" width="100%">
+<img src="https://raw.githubusercontent.com/DiegoPyLL/.github/main/profile/assets/hero.svg" alt="Retrato en ASCII y datos del perfil" width="100%">
 <!-- END:hero -->
 
 <!-- BEGIN:quote -->
@@ -11,14 +11,14 @@
 ## 🔥 Rachas
 
 <!-- BEGIN:streaks -->
-<img src="assets/streaks.svg" alt="Rachas de contribución" width="100%">
+<img src="https://raw.githubusercontent.com/DiegoPyLL/.github/main/profile/assets/streaks.svg" alt="Rachas de contribución" width="100%">
 <!-- END:streaks -->
 
 
 ## Repos Principales
 
 <!-- BEGIN:repos -->
-<img src="assets/pinned-repos.svg" alt="Repositorios pinneados" width="100%">
+<img src="https://raw.githubusercontent.com/DiegoPyLL/.github/main/profile/assets/pinned-repos.svg" alt="Repositorios pinneados" width="100%">
 <!-- END:repos -->
 
 
@@ -27,13 +27,13 @@
 ## 📊 Lenguajes
 
 <!-- BEGIN:languages -->
-<img src="assets/languages.svg" alt="Distribución de lenguajes" width="100%">
+<img src="https://raw.githubusercontent.com/DiegoPyLL/.github/main/profile/assets/languages.svg" alt="Distribución de lenguajes" width="100%">
 <!-- END:languages -->
 
 ## 🛠️ Tecnologías
 
 <!-- BEGIN:tech -->
-<img src="assets/tech-stack.svg" alt="Stack de tecnologías" width="100%">
+<img src="https://raw.githubusercontent.com/DiegoPyLL/.github/main/profile/assets/tech-stack.svg" alt="Stack de tecnologías" width="100%">
 <!-- END:tech -->
 
 ---

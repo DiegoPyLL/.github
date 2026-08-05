@@ -234,12 +234,19 @@ def _achievement_lines(stats: dict) -> list[str] | None:
 # ---------------------------------------------------------------------- footer
 
 
-def footer(stats: dict) -> str:
+def footer(stats: dict, config: dict) -> str:
+    """Pie con enlaces absolutos.
+
+    La portada del perfil se renderiza fuera del arbol del repo, asi que las
+    rutas relativas a scripts/ no resolverian desde ahi.
+    """
     when = _short_date(stats.get("generated_at", ""))
+    base = f"https://github.com/{config.get('github_user', '')}/{config.get('repo', '.github')}"
+    workflow = f"{base}/blob/main/.github/workflows/refresh-readme.yml"
     return (
         f"<sub>Actualizado automáticamente el {when} por "
-        f"<a href=\".github/workflows/refresh-readme.yml\">GitHub Actions</a> — "
-        f"generado con los scripts de <a href=\"scripts/\">scripts/</a>, "
+        f"<a href=\"{workflow}\">GitHub Actions</a> — "
+        f"generado con los scripts de <a href=\"{base}/tree/main/scripts\">scripts/</a>, "
         f"sin servicios externos en el render.</sub>"
     )
 
@@ -265,5 +272,5 @@ def build_blocks(stats: dict, config: dict, ascii_art: str | None) -> dict[str, 
         "hero": _fence(_frame(hero_lines, width)),
         "streaks": _fence(_columns(cards, width)) if cards else "_Sin datos de contribuciones._",
         "achievements": _fence(_frame(ach_lines, width)) if ach_lines else "_Sin logros._",
-        "footer": footer(stats),
+        "footer": footer(stats, config),
     }

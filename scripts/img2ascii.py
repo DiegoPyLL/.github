@@ -4,6 +4,9 @@
 Todo el procesamiento es local: la unica dependencia es Pillow.
 
     python scripts/img2ascii.py assets/avatar.png --width 40 -o assets/ascii.txt
+
+Acepta lo que abra Pillow (png, jpg, webp, ...) y ademas SVG con imagenes
+embebidas, que se rasterizan con svgraster.
 """
 
 from __future__ import annotations
@@ -13,6 +16,8 @@ import sys
 from pathlib import Path
 
 from PIL import Image, ImageEnhance, ImageOps
+
+import svgraster
 
 # Las rampas van del pixel mas oscuro (indice 0) al mas claro (ultimo indice),
 # pensadas para leerse sobre fondo oscuro. Usa --invert para fondo claro.
@@ -73,14 +78,22 @@ def image_to_ascii(
     return "\n".join(rows)
 
 
+def load_image(path: str | Path) -> Image.Image:
+    """Abre la imagen; los SVG pasan primero por el rasterizador local."""
+    path = Path(path)
+    if path.suffix.lower() == ".svg":
+        return svgraster.rasterize(path)
+    return Image.open(path)
+
+
 def render_file(path: str | Path, **kwargs) -> str:
-    with Image.open(path) as img:
+    with load_image(path) as img:
         return image_to_ascii(img, **kwargs)
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Convierte una imagen a ASCII art (local).")
-    parser.add_argument("image", type=Path, help="Ruta de la imagen (png, jpg, webp, ...)")
+    parser.add_argument("image", type=Path, help="Ruta de la imagen (png, jpg, webp, svg, ...)")
     parser.add_argument("-w", "--width", type=int, default=40, help="Ancho en caracteres (def. 40)")
     parser.add_argument(
         "-r", "--ramp", default="standard", choices=sorted(RAMPS), help="Set de caracteres"
@@ -97,15 +110,18 @@ def main(argv: list[str] | None = None) -> int:
     if not args.image.exists():
         parser.error(f"no existe la imagen: {args.image}")
 
-    art = render_file(
-        args.image,
-        width=args.width,
-        ramp=RAMPS[args.ramp],
-        invert=args.invert,
-        autocontrast=args.autocontrast,
-        contrast=args.contrast,
-        char_aspect=args.char_aspect,
-    )
+    try:
+        art = render_file(
+            args.image,
+            width=args.width,
+            ramp=RAMPS[args.ramp],
+            invert=args.invert,
+            autocontrast=args.autocontrast,
+            contrast=args.contrast,
+            char_aspect=args.char_aspect,
+        )
+    except svgraster.SVGError as exc:
+        parser.error(str(exc))
 
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

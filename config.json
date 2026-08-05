@@ -1,9 +1,10 @@
 {
   "github_user": "DiegoPyLL",
+  "repo": ".github",
 
   "ascii": {
-    "source": "assets/avatar.png",
-    "output": "assets/ascii.txt",
+    "source": "profile/assets/yo.png",
+    "output": "profile/assets/ascii.txt",
     "width": 34,
     "ramp": "standard",
     "invert": false,

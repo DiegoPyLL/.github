@@ -23,9 +23,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import github_data
 import render
 import svgkit
+import svgraster
 from img2ascii import RAMPS, render_file
 
 ROOT = Path(__file__).resolve().parent.parent
+
+# GitHub renderiza profile/README.md como portada del perfil de la organizacion.
+# Los assets viven dentro de esa misma carpeta para poder referenciarlos con
+# rutas relativas simples, sin "../", que es lo que aguanta ese render.
+PROFILE_DIR = ROOT / "profile"
+ASSETS_DIR = PROFILE_DIR / "assets"
 
 TEMPLATE = """\
 <!-- BEGIN:hero -->
@@ -71,6 +78,10 @@ def ensure_avatar(path: Path, stats: dict) -> Path | None:
     """Baja el avatar publico si no hay imagen local todavia."""
     if path.exists():
         return path
+    if path.suffix.lower() == ".svg":
+        # El avatar de GitHub es raster: escribirlo con nombre .svg confunde mas
+        # que ayudar. Si el SVG configurado no esta, se cae al ASCII por defecto.
+        return None
     url = stats.get("profile", {}).get("avatar_url")
     if not url:
         return None
@@ -84,37 +95,41 @@ def ensure_avatar(path: Path, stats: dict) -> Path | None:
 
 def build_ascii(config: dict, stats: dict) -> str | None:
     cfg = config.get("ascii", {})
-    source = ROOT / cfg.get("source", "assets/avatar.png")
+    source = ROOT / cfg.get("source", "profile/assets/avatar.png")
     source = ensure_avatar(source, stats)
     if not source or not source.exists():
         print("  ! sin imagen de origen, se usa el ASCII por defecto", file=sys.stderr)
         return None
 
-    art = render_file(
-        source,
-        width=cfg.get("width", 34),
-        ramp=RAMPS.get(cfg.get("ramp", "standard"), RAMPS["standard"]),
-        invert=cfg.get("invert", False),
-        autocontrast=cfg.get("autocontrast", True),
-        contrast=cfg.get("contrast", 1.0),
-        char_aspect=cfg.get("char_aspect", 0.5),
-    )
+    try:
+        art = render_file(
+            source,
+            width=cfg.get("width", 34),
+            ramp=RAMPS.get(cfg.get("ramp", "standard"), RAMPS["standard"]),
+            invert=cfg.get("invert", False),
+            autocontrast=cfg.get("autocontrast", True),
+            contrast=cfg.get("contrast", 1.0),
+            char_aspect=cfg.get("char_aspect", 0.5),
+        )
+    except svgraster.SVGError as exc:
+        # Un SVG que no se puede rasterizar no debe voltear todo el build.
+        print(f"  ! {exc}; se usa el ASCII por defecto", file=sys.stderr)
+        return None
 
-    out = ROOT / cfg.get("output", "assets/ascii.txt")
+    out = ROOT / cfg.get("output", "profile/assets/ascii.txt")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(art + "\n", encoding="utf-8")
     return art
 
 
 def write_svgs(config: dict, stats: dict) -> None:
-    assets = ROOT / "assets"
-    assets.mkdir(parents=True, exist_ok=True)
+    ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     overrides = config.get("tech_colors") or {}
 
-    (assets / "languages.svg").write_text(
+    (ASSETS_DIR / "languages.svg").write_text(
         svgkit.language_bar(stats.get("languages", []), overrides=overrides), encoding="utf-8"
     )
-    (assets / "tech-stack.svg").write_text(
+    (ASSETS_DIR / "tech-stack.svg").write_text(
         svgkit.tech_badges(config.get("tech", {}), overrides=overrides), encoding="utf-8"
     )
 
@@ -143,7 +158,7 @@ def main(argv: list[str] | None = None) -> int:
     art = build_ascii(config, stats)
     write_svgs(config, stats)
 
-    readme = ROOT / "README.md"
+    readme = PROFILE_DIR / "README.md"
     text = readme.read_text(encoding="utf-8") if readme.exists() else ""
     if "<!-- BEGIN:hero -->" not in text:
         print("> README sin marcadores, se escribe la plantilla base", file=sys.stderr)
@@ -158,6 +173,7 @@ def main(argv: list[str] | None = None) -> int:
     for name, content in blocks.items():
         text = replace_block(text, name, content)
 
+    readme.parent.mkdir(parents=True, exist_ok=True)
     readme.write_text(text, encoding="utf-8")
     print(f"README actualizado: {readme}", file=sys.stderr)
     return 0

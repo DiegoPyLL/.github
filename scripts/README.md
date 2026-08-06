@@ -122,6 +122,12 @@ Todo lo editable vive en `config.json`:
   `name`, `studies`, `location`, `working_on`, `learning`, `ask_me_about`,
   `collaborate_on`, `fun_fact`). Los campos vacios simplemente no se muestran.
 - `tech` — categorias y tecnologias de los badges.
+- `quote` — la cita de la portada, agrupada por dia de la semana ISO: `"1"` es
+  lunes y `"7"` domingo. Cada dia es una lista de `{ "text", "author" }` y el
+  build elige la que toca segun la fecha en `America/Santiago`. Con varias
+  citas en un mismo dia la lista avanza una posicion cada 3 dias, asi que el
+  lunes no repite siempre la misma. Un dia sin citas deja el hueco con una
+  pista en vez del bloque.
 - `tech_colors` — sobrescribe el color de un badge puntual.
 - `languages` — cuantos lenguajes mostrar, cuales excluir, si contar forks.
 
@@ -135,7 +141,7 @@ que se pierda:
 <!-- BEGIN:hero -->   ...  <!-- END:hero -->
 <!-- BEGIN:streaks --> ... <!-- END:streaks -->
 <!-- BEGIN:languages --> ... <!-- END:languages -->
-<!-- BEGIN:achievements --> ... <!-- END:achievements -->
+<!-- BEGIN:quote --> ... <!-- END:quote -->
 <!-- BEGIN:tech --> ... <!-- END:tech -->
 <!-- BEGIN:footer --> ... <!-- END:footer -->
 ```

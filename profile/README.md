@@ -3,9 +3,9 @@
 <!-- END:hero -->
 
 <!-- BEGIN:quote -->
-> *“Lo que hace el aburrimiento es increíble.”*
+> *“La libertad humana exige libertad en nuestros gustos y en la determinación de nuestros propios fines; libertad para trazar el plan de nuestra vida según nuestro propio carácter, para obrar como queremos, sujetos a las consecuencias de nuestros actos, sin que nos lo impidan nuestros semejantes en tanto no los perjudiquemos.”*
 >
-> <p align="right">— <b>Diego Peña y Lillo Luhrs</b></p>
+> <p align="right">— <b>John Stuart Mill</b></p>
 <!-- END:quote -->
 
 ## 🔥 Rachas

@@ -39,8 +39,47 @@
   },
 
   "quote": {
-    "text": "Lo que hace el aburrimiento es increíble.",
-    "author": "Diego Peña y Lillo Luhrs"
+    "1": [
+      {
+        "text": "Lo que hace el aburrimiento es increíble.",
+        "author": "Diego Peña y Lillo Luhrs"
+      }],
+
+    "2": [
+      {
+        "text": "Lo que hace el aburrimiento es increíble.",
+        "author": "Diego Peña y Lillo Luhrs"
+      }],
+
+    "3": [
+      {
+        "text": "Lo que hace el aburrimiento es increíble.",
+        "author": "Diego Peña y Lillo Luhrs"
+      }],
+
+    "4": [
+      {
+        "text": "La libertad humana exige libertad en nuestros gustos y en la determinación de nuestros propios fines; libertad para trazar el plan de nuestra vida según nuestro propio carácter, para obrar como queremos, sujetos a las consecuencias de nuestros actos, sin que nos lo impidan nuestros semejantes en tanto no los perjudiquemos.",
+        "author": "John Stuart Mill"
+      }],
+
+    "5": [
+      {
+        "text": "No such thing as a life that’s better than yours.",
+        "author": "J.Cole"
+      }],
+
+    "6": [
+      {
+        "text": "Lo que hace el aburrimiento es increíble.",
+        "author": "Diego Peña y Lillo Luhrs"
+      }],
+
+    "7": [
+      {
+        "text": "Lo que hace el aburrimiento es increíble.",
+        "author": "Diego Peña y Lillo Luhrs"
+      }]
   },
 
   "tech_colors": {},

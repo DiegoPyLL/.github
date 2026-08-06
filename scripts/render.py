@@ -9,9 +9,10 @@ Los tres cuadros comparten ancho para que la pagina se lea como un panel.
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
-MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+MONTHS =["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
 
 # Los cuadros se estiran hasta el contenido mas ancho. Solo hay piso, no techo:
 # un techo recortaria el marco sin recortar el texto y las lineas se saldrian
@@ -251,9 +252,46 @@ def streak_cards(stats: dict) -> list[list[str]] | None:
 
 QUOTE_HINT = (
     '<!-- Tu cita va aqui: escribela en config.json, en "quote": '
-    '{ "text": "...", "author": "..." }. Editar este bloque a mano no sirve, '
+    '{ "1": [ { "text": "...", "author": "..." } ], ... }, una clave por dia '
+    "ISO (1 = lunes ... 7 = domingo). Editar este bloque a mano no sirve, "
     "el build lo reescribe. -->"
 )
+
+# Cada dia puede tener varias citas: la lista avanza una posicion cada tantos
+# dias de calendario, asi que la del lunes no es la misma todas las semanas.
+ROTATION_DAYS = 3
+
+# El cron corre de madrugada UTC, donde la fecha ya coincide con la de Chile,
+# pero un workflow_dispatch o un push al mediodia caen en otro dia UTC. La zona
+# la fija el mismo huso que usa github_data para "generated_at".
+TIMEZONE = ZoneInfo("America/Santiago")
+
+
+def _today() -> date:
+    return datetime.now(TIMEZONE).date()
+
+
+def _pick_quote(data: dict, today: date) -> dict:
+    """Cita que toca hoy dentro del mapa por dia de config.json."""
+    if not isinstance(data, dict):
+        return {}
+
+    # Forma antigua: un solo { "text": ..., "author": ... } sin dias.
+    if "text" in data:
+        return data
+
+    entries = data.get(str(today.isoweekday())) or []
+    if isinstance(entries, dict):
+        entries = [entries]
+    entries = [
+        item
+        for item in entries
+        if isinstance(item, dict) and (item.get("text") or "").strip()
+    ]
+    if not entries:
+        return {}
+
+    return entries[(today.toordinal() // ROTATION_DAYS) % len(entries)]
 
 
 def quote(config: dict) -> str:
@@ -262,7 +300,7 @@ def quote(config: dict) -> str:
     Sin texto se deja el hueco con una pista: el bloque se regenera en cada
     build, asi que el contenido tiene que salir de config.json.
     """
-    data = config.get("quote") or {}
+    data = _pick_quote(config.get("quote") or {}, _today())
     text = (data.get("text") or "").strip()
     if not text:
         return QUOTE_HINT

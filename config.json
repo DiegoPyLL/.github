@@ -3,9 +3,9 @@
   "repo": ".github",
 
   "ascii": {
-    "source": "profile/assets/yo.svg",
+    "source": "profile/assets/yo.png",
     "output": "profile/assets/ascii.txt",
-    "width": 88,
+    "width": 55,
     "ramp": "standard",
     "invert": false,
     "autocontrast": true,

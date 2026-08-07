@@ -165,16 +165,17 @@ def _stat_rows(stats: dict) -> list[tuple[str, str]]:
         if value not in (None, "", 0, "—"):
             rows.append((label, str(value)))
 
-    add("Repos", _num(repos.get("own_repos")))
+    add("Repositorios Públicos", _num(repos.get("own_repos")))
     add("Estrellas", _num(repos.get("stars")))
     add("Seguidores", _num(profile.get("followers")))
     add("Contribuciones", _num(streaks_data.get("total")))
     add("Pull requests", _num(counts.get("pull_requests")))
     add("Issues", _num(counts.get("issues")))
-    if streaks_data.get("current"):
-        add("Racha actual", f"{streaks_data['current']} días")
-    if streaks_data.get("longest"):
-        add("Racha más larga", f"{streaks_data['longest']} días")
+  # if streaks_data.get("current"):
+  #     add("Racha actual", f"{streaks_data['current']} días")
+  # if streaks_data.get("longest"):
+  #     add("Racha más larga", f"{streaks_data['longest']} días")
+  # add("Miembro desde", _short_date(profile.get("created_at")))
     add("Tiempo en GitHub", _time_on_github(profile))
 
     return rows

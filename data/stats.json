@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06T04:39:14-04:00",
+  "generated_at": "2026-08-07T03:18:34-04:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -75,17 +75,17 @@
     {
       "name": "TypeScript",
       "bytes": 578524,
-      "percent": 30.5
+      "percent": 30.4
     },
     {
       "name": "Python",
-      "bytes": 488796,
-      "percent": 25.7
+      "bytes": 490086,
+      "percent": 25.8
     },
     {
       "name": "Astro",
       "bytes": 352322,
-      "percent": 18.6
+      "percent": 18.5
     },
     {
       "name": "Kotlin",
@@ -119,15 +119,15 @@
     }
   ],
   "streaks": {
-    "total": 681,
-    "current": 11,
+    "total": 686,
+    "current": 12,
     "current_start": "2026-07-26",
-    "current_end": "2026-08-06",
+    "current_end": "2026-08-07",
     "longest": 19,
     "longest_start": "2025-10-15",
     "longest_end": "2025-11-02",
-    "days_tracked": 1314,
-    "active_days": 134,
+    "days_tracked": 1315,
+    "active_days": 135,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -140,7 +140,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 681,
+      "value": 686,
       "tier": "A",
       "level": 3,
       "max_level": 6,

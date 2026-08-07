@@ -13,25 +13,25 @@
   <clipPath id="round"><rect x="0" y="0" width="804.0" height="14" rx="7.0"/></clipPath>
   <rect class="track" x="0" y="0" width="804.0" height="14" rx="7.0"/>
   <g clip-path="url(#round)">
-    <rect x="0.00" y="0" width="245.22" height="14" fill="#3178C6"/>
-    <rect x="245.22" y="0" width="206.63" height="14" fill="#3572A5"/>
-    <rect x="451.85" y="0" width="149.54" height="14" fill="#FF5D01"/>
-    <rect x="601.39" y="0" width="81.20" height="14" fill="#A97BFF"/>
-    <rect x="682.60" y="0" width="63.52" height="14" fill="#E34C26"/>
-    <rect x="746.11" y="0" width="45.02" height="14" fill="#663399"/>
-    <rect x="791.14" y="0" width="8.84" height="14" fill="#F1E05A"/>
+    <rect x="0.00" y="0" width="244.66" height="14" fill="#3178C6"/>
+    <rect x="244.66" y="0" width="207.64" height="14" fill="#3572A5"/>
+    <rect x="452.30" y="0" width="148.89" height="14" fill="#FF5D01"/>
+    <rect x="601.19" y="0" width="81.29" height="14" fill="#A97BFF"/>
+    <rect x="682.47" y="0" width="63.58" height="14" fill="#E34C26"/>
+    <rect x="746.05" y="0" width="45.07" height="14" fill="#663399"/>
+    <rect x="791.12" y="0" width="8.85" height="14" fill="#F1E05A"/>
     <rect x="799.98" y="0" width="1.61" height="14" fill="#89E051"/>
     <rect x="801.59" y="0" width="2.41" height="14" fill="#8B949E"/>
   </g>
   <circle cx="6.0" cy="42.0" r="6" fill="#3178C6"/>
   <text class="val" x="20.0" y="47.0" font-size="13" font-weight="600">TypeScript</text>
-  <text class="key" x="94.9" y="47.0" font-size="13">30.5%</text>
+  <text class="key" x="94.9" y="47.0" font-size="13">30.4%</text>
   <circle cx="274.0" cy="42.0" r="6" fill="#3572A5"/>
   <text class="val" x="288.0" y="47.0" font-size="13" font-weight="600">Python</text>
-  <text class="key" x="337.4" y="47.0" font-size="13">25.7%</text>
+  <text class="key" x="337.4" y="47.0" font-size="13">25.8%</text>
   <circle cx="542.0" cy="42.0" r="6" fill="#FF5D01"/>
   <text class="val" x="556.0" y="47.0" font-size="13" font-weight="600">Astro</text>
-  <text class="key" x="595.0" y="47.0" font-size="13">18.6%</text>
+  <text class="key" x="595.0" y="47.0" font-size="13">18.5%</text>
   <circle cx="6.0" cy="66.0" r="6" fill="#A97BFF"/>
   <text class="val" x="20.0" y="71.0" font-size="13" font-weight="600">Kotlin</text>
   <text class="key" x="63.7" y="71.0" font-size="13">10.1%</text>

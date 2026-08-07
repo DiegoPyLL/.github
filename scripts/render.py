@@ -142,13 +142,13 @@ def _identity_rows(config: dict, stats: dict) -> list[tuple[str, str]]:
             rows.append((label, str(value)))
 
     add("Nombre", identity.get("name") or profile.get("name"))
-    add("Estudios", identity.get("studies") or identity.get("role"))
-    add("Ubicación", identity.get("location") or profile.get("location"))
-    add("Trabajando en", identity.get("working_on"))
-    add("Aprendiendo", identity.get("learning"))
-    add("Pregúntame de", identity.get("ask_me_about"))
-    add("Colaboro en", identity.get("collaborate_on"))
-    add("Dato random", identity.get("fun_fact"))
+    add("\nEstudios", identity.get("studies") or identity.get("role"))
+    add("\nUbicación", identity.get("location") or profile.get("location"))
+    add("\nTrabajando en", identity.get("working_on"))
+    add("\nAprendiendo", identity.get("learning"))
+    add("\nPregúntame de", identity.get("ask_me_about"))
+    add("\nColaboro en", identity.get("collaborate_on"))
+    add("\nDato random", identity.get("fun_fact"))
 
     return _wrap_rows(rows)
 

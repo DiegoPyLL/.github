@@ -71,7 +71,7 @@ datos. El panel a su vez va partido en dos bloques, con el titulo
   demas campos de `identity` en `config.json`. Solo cambian si se edita el
   archivo. Los valores largos se parten solos a `render.VALUE_WRAP` columnas.
 - **Abajo, lo vivo** (`render._stat_rows`): repos, estrellas, seguidores,
-  contribuciones, PRs, issues, rachas, miembro desde y tiempo en GitHub. Esto
+  contribuciones, PRs, issues, rachas y tiempo en GitHub. Esto
   lo vuelve a bajar de la API el workflow diario de las 06:00 UTC.
 
 Detalles que importan si se toca:

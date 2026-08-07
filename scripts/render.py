@@ -175,7 +175,6 @@ def _stat_rows(stats: dict) -> list[tuple[str, str]]:
         add("Racha actual", f"{streaks_data['current']} días")
     if streaks_data.get("longest"):
         add("Racha más larga", f"{streaks_data['longest']} días")
-    add("Miembro desde", _short_date(profile.get("created_at")))
     add("Tiempo en GitHub", _time_on_github(profile))
 
     return rows

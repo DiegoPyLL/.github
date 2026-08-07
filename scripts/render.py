@@ -139,16 +139,22 @@ def _identity_rows(config: dict, stats: dict) -> list[tuple[str, str]]:
 
     def add(label: str, value) -> None:
         if value not in (None, "", 0, "—"):
+            # Fila vacia entre campos: el salto va como fila propia, no como "\n"
+            # dentro de la etiqueta (cada fila es un <text> y ahi el \n seria un
+            # espacio). Solo entre campos que existen, asi un campo vacio de
+            # config.json no deja el hueco doble ni cuelga uno al final.
+            if rows:
+                rows.append(("", ""))
             rows.append((label, str(value)))
 
     add("Nombre", identity.get("name") or profile.get("name"))
-    add("\nEstudios", identity.get("studies") or identity.get("role"))
-    add("\nUbicación", identity.get("location") or profile.get("location"))
-    add("\nTrabajando en", identity.get("working_on"))
-    add("\nAprendiendo", identity.get("learning"))
-    add("\nPregúntame de", identity.get("ask_me_about"))
-    add("\nColaboro en", identity.get("collaborate_on"))
-    add("\nDato random", identity.get("fun_fact"))
+    add("Estudios", identity.get("studies") or identity.get("role"))
+    add("Ubicación", identity.get("location") or profile.get("location"))
+    add("Trabajando en", identity.get("working_on"))
+    add("Aprendiendo", identity.get("learning"))
+    add("Pregúntame de", identity.get("ask_me_about"))
+    add("Colaboro en", identity.get("collaborate_on"))
+    add("Dato random", identity.get("fun_fact"))
 
     return _wrap_rows(rows)
 

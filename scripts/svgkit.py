@@ -280,6 +280,12 @@ def _info_lines(
 
     def rows_to_lines(rows: list[tuple[str, str]]) -> None:
         for label, value in rows:
+            # Fila sin etiqueta ni valor: separador. Se deja como lista vacia
+            # para que ocupe su alto de linea sin dibujar un <text> de espacios.
+            # (Una continuacion de _wrap_rows viene sin etiqueta pero con valor.)
+            if not label and not value:
+                lines.append([])
+                continue
             lines.append(
                 [(_pad(label, key_w) + "   ", ' class="key"'), (value, ' class="val"')]
             )

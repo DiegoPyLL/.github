@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T03:37:05-04:00",
+  "generated_at": "2026-08-14T03:27:14-04:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -104,7 +104,7 @@
     },
     {
       "name": "JavaScript",
-      "bytes": 21800,
+      "bytes": 21840,
       "percent": 1.1
     },
     {
@@ -119,28 +119,28 @@
     }
   ],
   "streaks": {
-    "total": 711,
-    "current": 18,
+    "total": 717,
+    "current": 19,
     "current_start": "2026-07-26",
-    "current_end": "2026-08-13",
+    "current_end": "2026-08-14",
     "longest": 19,
     "longest_start": "2025-10-15",
     "longest_end": "2025-11-02",
-    "days_tracked": 1321,
-    "active_days": 141,
+    "days_tracked": 1322,
+    "active_days": 142,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
   "counts": {
     "pull_requests": 15,
     "merged_prs": 13,
-    "issues": 99
+    "issues": 100
   },
   "years_on_github": 2,
   "achievements": [
     {
       "title": "Commits",
-      "value": 711,
+      "value": 717,
       "tier": "A",
       "level": 3,
       "max_level": 6,
@@ -185,12 +185,12 @@
     },
     {
       "title": "Issues",
-      "value": 99,
-      "tier": "S",
-      "level": 4,
+      "value": 100,
+      "tier": "SS",
+      "level": 5,
       "max_level": 6,
-      "next": 100,
-      "next_tier": "SS"
+      "next": 300,
+      "next_tier": "SSS"
     },
     {
       "title": "Experiencia",

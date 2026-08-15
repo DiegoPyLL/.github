@@ -43,10 +43,12 @@
   <text x="33.4" y="232.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Pandas</text>
   <rect x="74.7" y="214.0" width="64.8" height="28" rx="6" fill="#013243"/>
   <text x="107.1" y="232.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">NumPy</text>
-  <rect x="147.5" y="214.0" width="84.5" height="28" rx="6" fill="#11557C"/>
-  <text x="189.8" y="232.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Matplotlib</text>
-  <rect x="240.0" y="214.0" width="68.4" height="28" rx="6" fill="#F37626"/>
-  <text x="274.2" y="232.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Jupyter</text>
+  <rect x="147.5" y="214.0" width="57.1" height="28" rx="6" fill="#6E7681"/>
+  <text x="176.1" y="232.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Scipy</text>
+  <rect x="212.6" y="214.0" width="84.5" height="28" rx="6" fill="#11557C"/>
+  <text x="254.9" y="232.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Matplotlib</text>
+  <rect x="305.1" y="214.0" width="68.4" height="28" rx="6" fill="#F37626"/>
+  <text x="339.3" y="232.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Jupyter</text>
   <text class="muted" x="0" y="269.0" font-size="12" font-weight="700" letter-spacing="0.6">BASES DE DATOS</text>
   <rect x="0.0" y="278.0" width="92.2" height="28" rx="6" fill="#4169E1"/>
   <text x="46.1" y="296.0" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">PostgreSQL</text>

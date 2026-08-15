@@ -22,8 +22,8 @@
     "name": "Diego Peña y Lillo",
     "studies": "Ingeniería Informática, esp. en Inteligencia Artificial",
     "location": "Santiago de Chile",
-    "working_on": "ResenApp, proyecto enfocado a impulsar negocios a través de las reseñas de Google",
-    "learning": "PyTorch",
+    "working_on": "PonleNota, proyecto enfocado a impulsar negocios a través de las reseñas de Google",
+    "learning": "PyTorch, TensorFlow y MachineLearning",
     "ask_me_about": "",
     "collaborate_on": "",
     "fun_fact": ""
@@ -33,7 +33,7 @@
     "Lenguajes": ["Kotlin", "Python", "Java", "TypeScript", "SQL"],
     "Backend": ["Spring", "FastAPI", "Node.js"],
     "Frontend": ["React", "Next.js", "Astro", "Tailwind CSS"],
-    "Datos": ["Pandas", "NumPy", "Matplotlib", "Jupyter"],
+    "Datos": ["Pandas", "NumPy", "Scipy", "Matplotlib", "Jupyter"],
     "Bases de datos": ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Redis"],
     "Infraestructura": ["AWS", "Docker", "Vercel", "Git", "GitHub", "Linux"]
   },

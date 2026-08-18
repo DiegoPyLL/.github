@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T02:58:32-04:00",
+  "generated_at": "2026-08-18T02:46:11-04:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -17,10 +17,15 @@
     "public_repos": 6,
     "own_repos": 6,
     "forks_owned": 0,
-    "stars": 2,
+    "stars": 3,
     "forks_received": 0,
-    "watchers": 2,
+    "watchers": 3,
     "top_repos": [
+      {
+        "name": ".github",
+        "stars": 1,
+        "url": "https://github.com/DiegoPyLL/.github"
+      },
       {
         "name": "CarFlip",
         "stars": 1,
@@ -119,20 +124,20 @@
     }
   ],
   "streaks": {
-    "total": 801,
-    "current": 22,
+    "total": 825,
+    "current": 23,
     "current_start": "2026-07-26",
-    "current_end": "2026-08-17",
-    "longest": 22,
+    "current_end": "2026-08-18",
+    "longest": 23,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-08-16",
-    "days_tracked": 1325,
-    "active_days": 145,
+    "longest_end": "2026-08-17",
+    "days_tracked": 1326,
+    "active_days": 146,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
   "counts": {
-    "pull_requests": 14,
+    "pull_requests": 15,
     "merged_prs": 12,
     "issues": 75
   },
@@ -140,7 +145,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 801,
+      "value": 825,
       "tier": "A",
       "level": 3,
       "max_level": 6,
@@ -158,7 +163,7 @@
     },
     {
       "title": "Estrellas",
-      "value": 2,
+      "value": 3,
       "tier": "C",
       "level": 1,
       "max_level": 6,
@@ -176,7 +181,7 @@
     },
     {
       "title": "Pull requests",
-      "value": 14,
+      "value": 15,
       "tier": "B",
       "level": 2,
       "max_level": 6,

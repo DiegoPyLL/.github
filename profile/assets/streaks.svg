@@ -9,11 +9,11 @@
     .track { fill: #21262D; }
   </style>
   <rect class="card" x="0.5" y="0.5" width="859.0" height="121.0" rx="10"/>
-  <text class="val" x="215.0" y="48.5" font-size="34" font-weight="700" text-anchor="middle">22</text>
+  <text class="val" x="215.0" y="48.5" font-size="34" font-weight="700" text-anchor="middle">23</text>
   <text class="head" x="215.0" y="72.5" font-size="14" font-weight="600" text-anchor="middle">Racha actual · días</text>
   <text class="key" x="215.0" y="94.5" font-size="12" text-anchor="middle">26 jul 2026 → hoy</text>
   <line class="rule" x1="430.0" y1="24.0" x2="430.0" y2="98.0"/>
-  <text class="val" x="645.0" y="48.5" font-size="34" font-weight="700" text-anchor="middle">22</text>
+  <text class="val" x="645.0" y="48.5" font-size="34" font-weight="700" text-anchor="middle">23</text>
   <text class="head" x="645.0" y="72.5" font-size="14" font-weight="600" text-anchor="middle">Racha más larga · días</text>
-  <text class="key" x="645.0" y="94.5" font-size="12" text-anchor="middle">26 jul 2026 → 16 ago 2026</text>
+  <text class="key" x="645.0" y="94.5" font-size="12" text-anchor="middle">26 jul 2026 → 17 ago 2026</text>
 </svg>

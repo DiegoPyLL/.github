@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T02:46:47-04:00",
+  "generated_at": "2026-08-20T02:49:16-04:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -124,15 +124,15 @@
     }
   ],
   "streaks": {
-    "total": 840,
-    "current": 24,
+    "total": 848,
+    "current": 25,
     "current_start": "2026-07-26",
-    "current_end": "2026-08-19",
-    "longest": 24,
+    "current_end": "2026-08-20",
+    "longest": 25,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-08-18",
-    "days_tracked": 1327,
-    "active_days": 147,
+    "longest_end": "2026-08-19",
+    "days_tracked": 1328,
+    "active_days": 148,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -145,7 +145,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 840,
+      "value": 848,
       "tier": "A",
       "level": 3,
       "max_level": 6,

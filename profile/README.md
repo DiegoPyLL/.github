@@ -3,9 +3,9 @@
 <!-- END:hero -->
 
 <!-- BEGIN:quote -->
-> *“La libertad humana exige libertad en nuestros gustos y en la determinación de nuestros propios fines; libertad para trazar el plan de nuestra vida según nuestro propio carácter, para obrar como queremos, sujetos a las consecuencias de nuestros actos, sin que nos lo impidan nuestros semejantes en tanto no los perjudiquemos.”*
+> *“No such thing as a life that’s better than yours.”*
 >
-> <p align="right">— <b>John Stuart Mill</b></p>
+> <p align="right">— <b>J.Cole</b></p>
 <!-- END:quote -->
 
 ## 🔥 Rachas
@@ -39,5 +39,5 @@
 ---
 
 <!-- BEGIN:footer -->
-<sub>Actualizado automáticamente el 20 ago 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
+<sub>Actualizado automáticamente el 21 ago 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
 <!-- END:footer -->

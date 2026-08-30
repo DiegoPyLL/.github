@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T08:27:54-04:00",
+  "generated_at": "2026-08-30T07:28:43-04:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -124,15 +124,15 @@
     }
   ],
   "streaks": {
-    "total": 956,
-    "current": 34,
+    "total": 1008,
+    "current": 36,
     "current_start": "2026-07-26",
-    "current_end": "2026-08-29",
-    "longest": 34,
+    "current_end": "2026-08-30",
+    "longest": 36,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-08-28",
-    "days_tracked": 1337,
-    "active_days": 157,
+    "longest_end": "2026-08-30",
+    "days_tracked": 1338,
+    "active_days": 159,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -145,12 +145,12 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 956,
-      "tier": "A",
-      "level": 3,
+      "value": 1008,
+      "tier": "S",
+      "level": 4,
       "max_level": 6,
-      "next": 1000,
-      "next_tier": "S"
+      "next": 2000,
+      "next_tier": "SS"
     },
     {
       "title": "Repos",

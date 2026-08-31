@@ -62,8 +62,8 @@
   <line class="rule" x1="499.2" y1="453.1" x2="717.6" y2="453.1"/>
   <text x="499.2" y="476.3" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Repositorios Públicos   </tspan><tspan class="val">6</tspan></text>
   <text x="499.2" y="494.8" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Estrellas               </tspan><tspan class="val">3</tspan></text>
-  <text x="499.2" y="513.4" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Seguidores              </tspan><tspan class="val">5</tspan></text>
-  <text x="499.2" y="532.0" textLength="226.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Contribuciones          </tspan><tspan class="val">1.008</tspan></text>
+  <text x="499.2" y="513.4" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Seguidores              </tspan><tspan class="val">4</tspan></text>
+  <text x="499.2" y="532.0" textLength="226.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Contribuciones          </tspan><tspan class="val">1.023</tspan></text>
   <text x="499.2" y="550.6" textLength="202.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Pull requests           </tspan><tspan class="val">15</tspan></text>
   <text x="499.2" y="569.1" textLength="202.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Issues                  </tspan><tspan class="val">76</tspan></text>
   <text x="499.2" y="587.7" textLength="319.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Tiempo en GitHub        </tspan><tspan class="val">2 años y 10 meses</tspan></text>

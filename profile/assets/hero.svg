@@ -61,10 +61,10 @@
   <text x="499.2" y="439.1" textLength="218.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="head">Estadísticas · al día de hoy</tspan></text>
   <line class="rule" x1="499.2" y1="453.1" x2="717.6" y2="453.1"/>
   <text x="499.2" y="476.3" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Repositorios Públicos   </tspan><tspan class="val">7</tspan></text>
-  <text x="499.2" y="494.8" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Estrellas               </tspan><tspan class="val">4</tspan></text>
+  <text x="499.2" y="494.8" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Estrellas               </tspan><tspan class="val">6</tspan></text>
   <text x="499.2" y="513.4" textLength="195.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Seguidores              </tspan><tspan class="val">4</tspan></text>
-  <text x="499.2" y="532.0" textLength="226.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Contribuciones          </tspan><tspan class="val">1.049</tspan></text>
-  <text x="499.2" y="550.6" textLength="202.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Pull requests           </tspan><tspan class="val">17</tspan></text>
+  <text x="499.2" y="532.0" textLength="226.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Contribuciones          </tspan><tspan class="val">1.056</tspan></text>
+  <text x="499.2" y="550.6" textLength="202.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Pull requests           </tspan><tspan class="val">18</tspan></text>
   <text x="499.2" y="569.1" textLength="202.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Issues                  </tspan><tspan class="val">77</tspan></text>
   <text x="499.2" y="587.7" textLength="319.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan class="key">Tiempo en GitHub        </tspan><tspan class="val">2 años y 10 meses</tspan></text>
 </svg>

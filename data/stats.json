@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T06:51:06-04:00",
+  "generated_at": "2026-09-04T06:50:10-04:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -9,7 +9,7 @@
     "blog": "",
     "avatar_url": "https://avatars.githubusercontent.com/u/148589781?v=4",
     "followers": 4,
-    "following": 6,
+    "following": 9,
     "public_repos": 8,
     "created_at": "2023-10-20T20:55:28Z"
   },
@@ -17,10 +17,15 @@
     "public_repos": 8,
     "own_repos": 7,
     "forks_owned": 1,
-    "stars": 4,
+    "stars": 6,
     "forks_received": 0,
-    "watchers": 4,
+    "watchers": 6,
     "top_repos": [
+      {
+        "name": "Hackathon-Huawei-Cloud-MaaS",
+        "stars": 3,
+        "url": "https://github.com/DiegoPyLL/Hackathon-Huawei-Cloud-MaaS"
+      },
       {
         "name": ".github",
         "stars": 1,
@@ -35,11 +40,6 @@
         "name": "FlujoPRT",
         "stars": 1,
         "url": "https://github.com/DiegoPyLL/FlujoPRT"
-      },
-      {
-        "name": "Hackathon-Huawei-Cloud-MaaS",
-        "stars": 1,
-        "url": "https://github.com/DiegoPyLL/Hackathon-Huawei-Cloud-MaaS"
       }
     ]
   },
@@ -83,66 +83,66 @@
   ],
   "languages": [
     {
-      "name": "TypeScript",
-      "bytes": 583578,
-      "percent": 28.8
+      "name": "Python",
+      "bytes": 893138,
+      "percent": 36.3
     },
     {
-      "name": "Python",
-      "bytes": 538879,
-      "percent": 26.6
+      "name": "TypeScript",
+      "bytes": 589551,
+      "percent": 24.0
     },
     {
       "name": "Astro",
       "bytes": 352322,
-      "percent": 17.4
+      "percent": 14.3
+    },
+    {
+      "name": "HTML",
+      "bytes": 213177,
+      "percent": 8.7
     },
     {
       "name": "Kotlin",
       "bytes": 192077,
-      "percent": 9.5
-    },
-    {
-      "name": "HTML",
-      "bytes": 160238,
-      "percent": 7.9
+      "percent": 7.8
     },
     {
       "name": "CSS",
-      "bytes": 109222,
-      "percent": 5.4
+      "bytes": 113465,
+      "percent": 4.6
     },
     {
       "name": "JavaScript",
-      "bytes": 61146,
-      "percent": 3.0
+      "bytes": 68792,
+      "percent": 2.8
     },
     {
       "name": "Shell",
-      "bytes": 19549,
-      "percent": 1.0
+      "bytes": 21157,
+      "percent": 0.9
     },
     {
       "name": "Otros",
-      "bytes": 7659,
-      "percent": 0.4
+      "bytes": 17853,
+      "percent": 0.7
     }
   ],
   "streaks": {
-    "total": 1049,
-    "current": 39,
+    "total": 1056,
+    "current": 40,
     "current_start": "2026-07-26",
-    "current_end": "2026-09-03",
-    "longest": 39,
+    "current_end": "2026-09-04",
+    "longest": 40,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-09-02",
-    "days_tracked": 1342,
-    "active_days": 162,
+    "longest_end": "2026-09-03",
+    "days_tracked": 1343,
+    "active_days": 163,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
   "counts": {
-    "pull_requests": 17,
+    "pull_requests": 18,
     "merged_prs": 12,
     "issues": 77
   },
@@ -150,7 +150,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 1049,
+      "value": 1056,
       "tier": "S",
       "level": 4,
       "max_level": 6,
@@ -168,7 +168,7 @@
     },
     {
       "title": "Estrellas",
-      "value": 4,
+      "value": 6,
       "tier": "C",
       "level": 1,
       "max_level": 6,
@@ -186,7 +186,7 @@
     },
     {
       "title": "Pull requests",
-      "value": 17,
+      "value": 18,
       "tier": "B",
       "level": 2,
       "max_level": 6,

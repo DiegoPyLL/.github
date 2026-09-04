@@ -13,42 +13,42 @@
   <clipPath id="round"><rect x="0" y="0" width="804.0" height="14" rx="7.0"/></clipPath>
   <rect class="track" x="0" y="0" width="804.0" height="14" rx="7.0"/>
   <g clip-path="url(#round)">
-    <rect x="0.00" y="0" width="231.55" height="14" fill="#3178C6"/>
-    <rect x="231.55" y="0" width="213.86" height="14" fill="#3572A5"/>
-    <rect x="445.42" y="0" width="139.90" height="14" fill="#FF5D01"/>
-    <rect x="585.31" y="0" width="76.38" height="14" fill="#A97BFF"/>
-    <rect x="661.69" y="0" width="63.52" height="14" fill="#E34C26"/>
-    <rect x="725.21" y="0" width="43.42" height="14" fill="#663399"/>
-    <rect x="768.62" y="0" width="24.12" height="14" fill="#F1E05A"/>
-    <rect x="792.74" y="0" width="8.04" height="14" fill="#89E051"/>
-    <rect x="800.78" y="0" width="3.22" height="14" fill="#8B949E"/>
+    <rect x="0.00" y="0" width="291.56" height="14" fill="#3572A5"/>
+    <rect x="291.56" y="0" width="192.77" height="14" fill="#3178C6"/>
+    <rect x="484.33" y="0" width="114.86" height="14" fill="#FF5D01"/>
+    <rect x="599.18" y="0" width="69.88" height="14" fill="#E34C26"/>
+    <rect x="669.06" y="0" width="62.65" height="14" fill="#A97BFF"/>
+    <rect x="731.71" y="0" width="36.95" height="14" fill="#663399"/>
+    <rect x="768.66" y="0" width="22.49" height="14" fill="#F1E05A"/>
+    <rect x="791.15" y="0" width="7.23" height="14" fill="#89E051"/>
+    <rect x="798.38" y="0" width="5.62" height="14" fill="#8B949E"/>
   </g>
-  <circle cx="6.0" cy="42.0" r="6" fill="#3178C6"/>
-  <text class="val" x="20.0" y="47.0" font-size="13" font-weight="600">TypeScript</text>
-  <text class="key" x="94.9" y="47.0" font-size="13">28.8%</text>
-  <circle cx="274.0" cy="42.0" r="6" fill="#3572A5"/>
-  <text class="val" x="288.0" y="47.0" font-size="13" font-weight="600">Python</text>
-  <text class="key" x="337.4" y="47.0" font-size="13">26.6%</text>
+  <circle cx="6.0" cy="42.0" r="6" fill="#3572A5"/>
+  <text class="val" x="20.0" y="47.0" font-size="13" font-weight="600">Python</text>
+  <text class="key" x="69.4" y="47.0" font-size="13">36.3%</text>
+  <circle cx="274.0" cy="42.0" r="6" fill="#3178C6"/>
+  <text class="val" x="288.0" y="47.0" font-size="13" font-weight="600">TypeScript</text>
+  <text class="key" x="362.9" y="47.0" font-size="13">24.0%</text>
   <circle cx="542.0" cy="42.0" r="6" fill="#FF5D01"/>
   <text class="val" x="556.0" y="47.0" font-size="13" font-weight="600">Astro</text>
-  <text class="key" x="595.0" y="47.0" font-size="13">17.4%</text>
-  <circle cx="6.0" cy="66.0" r="6" fill="#A97BFF"/>
-  <text class="val" x="20.0" y="71.0" font-size="13" font-weight="600">Kotlin</text>
-  <text class="key" x="63.7" y="71.0" font-size="13">9.5%</text>
-  <circle cx="274.0" cy="66.0" r="6" fill="#E34C26"/>
-  <text class="val" x="288.0" y="71.0" font-size="13" font-weight="600">HTML</text>
-  <text class="key" x="331.7" y="71.0" font-size="13">7.9%</text>
+  <text class="key" x="595.0" y="47.0" font-size="13">14.3%</text>
+  <circle cx="6.0" cy="66.0" r="6" fill="#E34C26"/>
+  <text class="val" x="20.0" y="71.0" font-size="13" font-weight="600">HTML</text>
+  <text class="key" x="63.7" y="71.0" font-size="13">8.7%</text>
+  <circle cx="274.0" cy="66.0" r="6" fill="#A97BFF"/>
+  <text class="val" x="288.0" y="71.0" font-size="13" font-weight="600">Kotlin</text>
+  <text class="key" x="331.7" y="71.0" font-size="13">7.8%</text>
   <circle cx="542.0" cy="66.0" r="6" fill="#663399"/>
   <text class="val" x="556.0" y="71.0" font-size="13" font-weight="600">CSS</text>
-  <text class="key" x="587.7" y="71.0" font-size="13">5.4%</text>
+  <text class="key" x="587.7" y="71.0" font-size="13">4.6%</text>
   <circle cx="6.0" cy="90.0" r="6" fill="#F1E05A"/>
   <text class="val" x="20.0" y="95.0" font-size="13" font-weight="600">JavaScript</text>
-  <text class="key" x="94.9" y="95.0" font-size="13">3.0%</text>
+  <text class="key" x="94.9" y="95.0" font-size="13">2.8%</text>
   <circle cx="274.0" cy="90.0" r="6" fill="#89E051"/>
   <text class="val" x="288.0" y="95.0" font-size="13" font-weight="600">Shell</text>
-  <text class="key" x="327.0" y="95.0" font-size="13">1.0%</text>
+  <text class="key" x="327.0" y="95.0" font-size="13">0.9%</text>
   <circle cx="542.0" cy="90.0" r="6" fill="#8B949E"/>
   <text class="val" x="556.0" y="95.0" font-size="13" font-weight="600">Otros</text>
-  <text class="key" x="595.0" y="95.0" font-size="13">0.4%</text>
+  <text class="key" x="595.0" y="95.0" font-size="13">0.7%</text>
   </g>
 </svg>

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T06:50:10-04:00",
+  "generated_at": "2026-09-05T06:08:43-04:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -9,7 +9,7 @@
     "blog": "",
     "avatar_url": "https://avatars.githubusercontent.com/u/148589781?v=4",
     "followers": 4,
-    "following": 9,
+    "following": 8,
     "public_repos": 8,
     "created_at": "2023-10-20T20:55:28Z"
   },
@@ -17,13 +17,13 @@
     "public_repos": 8,
     "own_repos": 7,
     "forks_owned": 1,
-    "stars": 6,
+    "stars": 7,
     "forks_received": 0,
-    "watchers": 6,
+    "watchers": 7,
     "top_repos": [
       {
         "name": "Hackathon-Huawei-Cloud-MaaS",
-        "stars": 3,
+        "stars": 4,
         "url": "https://github.com/DiegoPyLL/Hackathon-Huawei-Cloud-MaaS"
       },
       {
@@ -44,6 +44,19 @@
     ]
   },
   "pinned_repos": [
+    {
+      "name": "Hackathon-Huawei-Cloud-MaaS",
+      "description": "Agente inteligente de respuesta a incidentes desarrollado para el Incident Response Hackathon de Huawei Cloud, utilizando MaaS de Kostra.",
+      "url": "https://github.com/DiegoPyLL/Hackathon-Huawei-Cloud-MaaS",
+      "languages": [
+        "PowerShell",
+        "Dockerfile",
+        "Python",
+        "JavaScript",
+        "HTML"
+      ],
+      "stars": 4
+    },
     {
       "name": "CarFlip",
       "description": "Plataforma Chilena que recopila publicaciones de vehiculos usados y los muestra en un portal. Normaliza los datos y los categoriza con IA para asignarle la etiqueta de \"Deal\" ",
@@ -90,7 +103,7 @@
     {
       "name": "TypeScript",
       "bytes": 589551,
-      "percent": 24.0
+      "percent": 23.9
     },
     {
       "name": "Astro",
@@ -99,7 +112,7 @@
     },
     {
       "name": "HTML",
-      "bytes": 213177,
+      "bytes": 214380,
       "percent": 8.7
     },
     {
@@ -129,15 +142,15 @@
     }
   ],
   "streaks": {
-    "total": 1056,
-    "current": 40,
+    "total": 1087,
+    "current": 41,
     "current_start": "2026-07-26",
-    "current_end": "2026-09-04",
-    "longest": 40,
+    "current_end": "2026-09-05",
+    "longest": 41,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-09-03",
-    "days_tracked": 1343,
-    "active_days": 163,
+    "longest_end": "2026-09-04",
+    "days_tracked": 1344,
+    "active_days": 164,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -150,7 +163,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 1056,
+      "value": 1087,
       "tier": "S",
       "level": 4,
       "max_level": 6,
@@ -168,7 +181,7 @@
     },
     {
       "title": "Estrellas",
-      "value": 6,
+      "value": 7,
       "tier": "C",
       "level": 1,
       "max_level": 6,

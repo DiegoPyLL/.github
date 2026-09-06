@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T06:08:43-04:00",
+  "generated_at": "2026-09-06T07:29:37-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -17,24 +17,19 @@
     "public_repos": 8,
     "own_repos": 7,
     "forks_owned": 1,
-    "stars": 7,
+    "stars": 5,
     "forks_received": 0,
-    "watchers": 7,
+    "watchers": 5,
     "top_repos": [
       {
         "name": "Hackathon-Huawei-Cloud-MaaS",
-        "stars": 4,
+        "stars": 3,
         "url": "https://github.com/DiegoPyLL/Hackathon-Huawei-Cloud-MaaS"
       },
       {
         "name": ".github",
         "stars": 1,
         "url": "https://github.com/DiegoPyLL/.github"
-      },
-      {
-        "name": "CarFlip",
-        "stars": 1,
-        "url": "https://github.com/DiegoPyLL/CarFlip"
       },
       {
         "name": "FlujoPRT",
@@ -55,7 +50,7 @@
         "JavaScript",
         "HTML"
       ],
-      "stars": 4
+      "stars": 3
     },
     {
       "name": "CarFlip",
@@ -68,7 +63,7 @@
         "Astro",
         "TypeScript"
       ],
-      "stars": 1
+      "stars": 0
     },
     {
       "name": "FlujoPRT",
@@ -97,43 +92,43 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 893138,
-      "percent": 36.3
+      "bytes": 1015409,
+      "percent": 39.0
     },
     {
       "name": "TypeScript",
       "bytes": 589551,
-      "percent": 23.9
+      "percent": 22.7
     },
     {
       "name": "Astro",
       "bytes": 352322,
-      "percent": 14.3
+      "percent": 13.5
     },
     {
       "name": "HTML",
-      "bytes": 214380,
-      "percent": 8.7
+      "bytes": 228930,
+      "percent": 8.8
     },
     {
       "name": "Kotlin",
       "bytes": 192077,
-      "percent": 7.8
+      "percent": 7.4
     },
     {
       "name": "CSS",
-      "bytes": 113465,
-      "percent": 4.6
+      "bytes": 114186,
+      "percent": 4.4
     },
     {
       "name": "JavaScript",
-      "bytes": 68792,
-      "percent": 2.8
+      "bytes": 71328,
+      "percent": 2.7
     },
     {
       "name": "Shell",
       "bytes": 21157,
-      "percent": 0.9
+      "percent": 0.8
     },
     {
       "name": "Otros",
@@ -142,15 +137,15 @@
     }
   ],
   "streaks": {
-    "total": 1087,
-    "current": 41,
+    "total": 1149,
+    "current": 42,
     "current_start": "2026-07-26",
-    "current_end": "2026-09-05",
-    "longest": 41,
+    "current_end": "2026-09-06",
+    "longest": 42,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-09-04",
-    "days_tracked": 1344,
-    "active_days": 164,
+    "longest_end": "2026-09-05",
+    "days_tracked": 1345,
+    "active_days": 165,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -163,7 +158,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 1087,
+      "value": 1149,
       "tier": "S",
       "level": 4,
       "max_level": 6,
@@ -181,7 +176,7 @@
     },
     {
       "title": "Estrellas",
-      "value": 7,
+      "value": 5,
       "tier": "C",
       "level": 1,
       "max_level": 6,

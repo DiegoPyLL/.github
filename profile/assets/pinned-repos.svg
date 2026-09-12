@@ -25,19 +25,14 @@
   <text x="174.1" y="126.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Python</text>
   <text class="key" x="380.0" y="126.0" font-size="13" text-anchor="end">⭐ 3</text>
   <rect x="410.0" y="0.0" width="394.0" height="146.0" rx="6" fill="#161B22" stroke="#30363D" stroke-width="1"/>
-  <a href="https://github.com/DiegoPyLL/CarFlip">
-    <text class="head" x="424.0" y="29.0" font-size="16" font-weight="700">CarFlip</text>
+  <a href="https://github.com/ByFlopp/LosSimpsons_PMC">
+    <text class="head" x="424.0" y="29.0" font-size="16" font-weight="700">LosSimpsons_PMC</text>
   </a>
-  <text class="key" x="424.0" y="50.0" font-size="11">Plataforma Chilena que recopila publicaciones de vehiculos</text>
-  <text class="key" x="424.0" y="66.0" font-size="11">usados y los muestra en un portal. Normaliza los datos y los</text>
-  <text class="key" x="424.0" y="82.0" font-size="11">categoriza con IA para asignarle la etiqueta de "Deal"</text>
-  <rect x="424.0" y="112.0" width="43.4" height="20" rx="4" fill="#3572A5"/>
-  <text x="445.7" y="126.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Python</text>
-  <rect x="473.4" y="112.0" width="36.6" height="20" rx="4" fill="#6E7681"/>
-  <text x="491.7" y="126.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Mako</text>
-  <rect x="516.0" y="112.0" width="63.0" height="20" rx="4" fill="#F1E05A"/>
-  <text x="547.5" y="126.0" font-size="11" font-weight="600" fill="#0D1117" text-anchor="middle">JavaScript</text>
-  <text class="key" x="790.0" y="126.0" font-size="13" text-anchor="end"></text>
+  <text class="key" x="424.0" y="50.0" font-size="11">Modelo Perceptrón Multicapa para reconocimiento de</text>
+  <text class="key" x="424.0" y="66.0" font-size="11">personajes de los Simpsons</text>
+  <rect x="424.0" y="96.0" width="97.8" height="20" rx="4" fill="#DA5B0B"/>
+  <text x="472.9" y="110.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Jupyter Notebook</text>
+  <text class="key" x="790.0" y="110.0" font-size="13" text-anchor="end"></text>
   <rect x="0.0" y="162.0" width="394.0" height="162.0" rx="6" fill="#161B22" stroke="#30363D" stroke-width="1"/>
   <a href="https://github.com/DiegoPyLL/FlujoPRT">
     <text class="head" x="14.0" y="191.0" font-size="16" font-weight="700">FlujoPRT</text>
@@ -52,15 +47,18 @@
   <text x="81.1" y="304.0" font-size="11" font-weight="600" fill="#0D1117" text-anchor="middle">Shell</text>
   <text class="key" x="380.0" y="304.0" font-size="13" text-anchor="end">⭐ 1</text>
   <rect x="410.0" y="162.0" width="394.0" height="162.0" rx="6" fill="#161B22" stroke="#30363D" stroke-width="1"/>
-  <a href="https://github.com/DiegoPyLL/LapMaster">
-    <text class="head" x="424.0" y="191.0" font-size="16" font-weight="700">LapMaster</text>
+  <a href="https://github.com/DiegoPyLL/CarFlip">
+    <text class="head" x="424.0" y="191.0" font-size="16" font-weight="700">CarFlip</text>
   </a>
-  <rect x="424.0" y="212.0" width="58.4" height="20" rx="4" fill="#6E7681"/>
-  <text x="453.2" y="226.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Assembly</text>
-  <rect x="488.4" y="212.0" width="39.0" height="20" rx="4" fill="#A97BFF"/>
-  <text x="507.9" y="226.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Kotlin</text>
-  <rect x="533.4" y="212.0" width="39.0" height="20" rx="4" fill="#E34C26"/>
-  <text x="552.9" y="226.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">HTML</text>
-  <text class="key" x="790.0" y="226.0" font-size="13" text-anchor="end"></text>
+  <text class="key" x="424.0" y="212.0" font-size="11">Plataforma Chilena que recopila publicaciones de vehiculos</text>
+  <text class="key" x="424.0" y="228.0" font-size="11">usados y los muestra en un portal. Normaliza los datos y los</text>
+  <text class="key" x="424.0" y="244.0" font-size="11">categoriza con IA para asignarle la etiqueta de "Deal"</text>
+  <rect x="424.0" y="274.0" width="43.4" height="20" rx="4" fill="#3572A5"/>
+  <text x="445.7" y="288.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Python</text>
+  <rect x="473.4" y="274.0" width="36.6" height="20" rx="4" fill="#6E7681"/>
+  <text x="491.7" y="288.0" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Mako</text>
+  <rect x="516.0" y="274.0" width="63.0" height="20" rx="4" fill="#F1E05A"/>
+  <text x="547.5" y="288.0" font-size="11" font-weight="600" fill="#0D1117" text-anchor="middle">JavaScript</text>
+  <text class="key" x="790.0" y="288.0" font-size="13" text-anchor="end"></text>
   </g>
 </svg>

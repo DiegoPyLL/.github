@@ -3,9 +3,9 @@
 <!-- END:hero -->
 
 <!-- BEGIN:quote -->
-> *“No such thing as a life that’s better than yours.”*
+> *“¿Hay algo más peligroso que unos dioses insatisfechos e irresponsables que no saben lo que quieren?”*
 >
-> <p align="right">— <b>J.Cole, Love Yourz, 2014 Forest Hills Drive</b></p>
+> <p align="right">— <b>Yuval Noah Harari, Sapiens</b></p>
 <!-- END:quote -->
 
 ## 🔥 Rachas
@@ -39,5 +39,5 @@
 ---
 
 <!-- BEGIN:footer -->
-<sub>Actualizado automáticamente el 11 sep 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
+<sub>Actualizado automáticamente el 12 sep 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
 <!-- END:footer -->

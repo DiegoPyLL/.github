@@ -3,9 +3,9 @@
 <!-- END:hero -->
 
 <!-- BEGIN:quote -->
-> *“¿Hay algo más peligroso que unos dioses insatisfechos e irresponsables que no saben lo que quieren?”*
+> *“Lo que hace el aburrimiento es increíble.”*
 >
-> <p align="right">— <b>Yuval Noah Harari, Sapiens</b></p>
+> <p align="right">— <b>Diego Peña y Lillo Luhrs</b></p>
 <!-- END:quote -->
 
 ## 🔥 Rachas
@@ -39,5 +39,5 @@
 ---
 
 <!-- BEGIN:footer -->
-<sub>Actualizado automáticamente el 12 sep 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
+<sub>Actualizado automáticamente el 13 sep 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
 <!-- END:footer -->

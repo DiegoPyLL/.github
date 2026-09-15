@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T09:07:29-03:00",
+  "generated_at": "2026-09-15T08:19:10-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -57,7 +57,8 @@
       "description": "Modelo Perceptrón Multicapa para reconocimiento de personajes de los Simpsons",
       "url": "https://github.com/ByFlopp/LosSimpsons_PMC",
       "languages": [
-        "Jupyter Notebook"
+        "Jupyter Notebook",
+        "Shell"
       ],
       "stars": 0
     },
@@ -133,15 +134,15 @@
     }
   ],
   "streaks": {
-    "total": 1271,
-    "current": 50,
+    "total": 1273,
+    "current": 51,
     "current_start": "2026-07-26",
-    "current_end": "2026-09-14",
-    "longest": 50,
+    "current_end": "2026-09-15",
+    "longest": 51,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-09-13",
-    "days_tracked": 1353,
-    "active_days": 170,
+    "longest_end": "2026-09-14",
+    "days_tracked": 1354,
+    "active_days": 171,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -154,7 +155,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 1271,
+      "value": 1273,
       "tier": "S",
       "level": 4,
       "max_level": 6,

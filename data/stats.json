@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-02T09:03:54-03:00",
+  "generated_at": "2026-10-03T08:15:52-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
     "bio": null,
     "company": null,
     "location": "Chile",
-    "blog": "",
+    "blog": "volutus.cl",
     "avatar_url": "https://avatars.githubusercontent.com/u/148589781?v=4",
     "followers": 4,
     "following": 5,
@@ -138,28 +138,28 @@
     }
   ],
   "streaks": {
-    "total": 1581,
-    "current": 68,
+    "total": 1602,
+    "current": 69,
     "current_start": "2026-07-26",
-    "current_end": "2026-10-02",
-    "longest": 68,
+    "current_end": "2026-10-03",
+    "longest": 69,
     "longest_start": "2026-07-26",
-    "longest_end": "2026-10-01",
-    "days_tracked": 1371,
-    "active_days": 188,
+    "longest_end": "2026-10-02",
+    "days_tracked": 1372,
+    "active_days": 189,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
   "counts": {
-    "pull_requests": 24,
-    "merged_prs": 18,
+    "pull_requests": 26,
+    "merged_prs": 20,
     "issues": 81
   },
   "years_on_github": 2,
   "achievements": [
     {
       "title": "Commits",
-      "value": 1581,
+      "value": 1602,
       "tier": "S",
       "level": 4,
       "max_level": 6,
@@ -195,7 +195,7 @@
     },
     {
       "title": "Pull requests",
-      "value": 24,
+      "value": 26,
       "tier": "B",
       "level": 2,
       "max_level": 6,

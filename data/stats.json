@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T09:55:19-03:00",
+  "generated_at": "2026-11-09T12:30:02-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -140,28 +140,28 @@
     }
   ],
   "streaks": {
-    "total": 1907,
-    "current": 0,
-    "current_start": null,
-    "current_end": null,
+    "total": 1908,
+    "current": 1,
+    "current_start": "2026-11-08",
+    "current_end": "2026-11-09",
     "longest": 42,
     "longest_start": "2026-08-28",
     "longest_end": "2026-10-08",
-    "days_tracked": 1408,
-    "active_days": 221,
+    "days_tracked": 1409,
+    "active_days": 222,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
   "counts": {
     "pull_requests": 40,
     "merged_prs": 34,
-    "issues": 107
+    "issues": 108
   },
   "years_on_github": 3,
   "achievements": [
     {
       "title": "Commits",
-      "value": 1907,
+      "value": 1908,
       "tier": "S",
       "level": 4,
       "max_level": 6,
@@ -206,7 +206,7 @@
     },
     {
       "title": "Issues",
-      "value": 107,
+      "value": 108,
       "tier": "SS",
       "level": 5,
       "max_level": 6,

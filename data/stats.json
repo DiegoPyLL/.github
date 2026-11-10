@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T12:30:02-03:00",
+  "generated_at": "2026-11-10T11:29:54-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -41,7 +41,7 @@
   "pinned_repos": [
     {
       "name": "LosSimpsons_DeepLearning",
-      "description": "Modelo Perceptrón Multicapa para reconocimiento de personajes de los Simpsons",
+      "description": "Modelo de reconocimiento de personajes de los Simpsons",
       "url": "https://github.com/ByFlopp/LosSimpsons_DeepLearning",
       "languages": [
         "Jupyter Notebook",
@@ -140,28 +140,28 @@
     }
   ],
   "streaks": {
-    "total": 1908,
-    "current": 1,
+    "total": 1914,
+    "current": 2,
     "current_start": "2026-11-08",
-    "current_end": "2026-11-09",
+    "current_end": "2026-11-10",
     "longest": 42,
     "longest_start": "2026-08-28",
     "longest_end": "2026-10-08",
-    "days_tracked": 1409,
-    "active_days": 222,
+    "days_tracked": 1410,
+    "active_days": 223,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
   "counts": {
-    "pull_requests": 40,
+    "pull_requests": 41,
     "merged_prs": 34,
-    "issues": 108
+    "issues": 109
   },
   "years_on_github": 3,
   "achievements": [
     {
       "title": "Commits",
-      "value": 1908,
+      "value": 1914,
       "tier": "S",
       "level": 4,
       "max_level": 6,
@@ -197,7 +197,7 @@
     },
     {
       "title": "Pull requests",
-      "value": 40,
+      "value": 41,
       "tier": "B",
       "level": 2,
       "max_level": 6,
@@ -206,7 +206,7 @@
     },
     {
       "title": "Issues",
-      "value": 108,
+      "value": 109,
       "tier": "SS",
       "level": 5,
       "max_level": 6,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T12:24:18-03:00",
+  "generated_at": "2026-11-19T18:48:10-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -10,12 +10,12 @@
     "avatar_url": "https://avatars.githubusercontent.com/u/148589781?v=4",
     "followers": 4,
     "following": 5,
-    "public_repos": 10,
+    "public_repos": 11,
     "created_at": "2023-10-20T20:55:28Z"
   },
   "repos": {
-    "public_repos": 10,
-    "own_repos": 9,
+    "public_repos": 11,
+    "own_repos": 10,
     "forks_owned": 1,
     "stars": 6,
     "forks_received": 0,
@@ -140,7 +140,7 @@
     }
   ],
   "streaks": {
-    "total": 2017,
+    "total": 2019,
     "current": 12,
     "current_start": "2026-11-08",
     "current_end": "2026-11-19",
@@ -161,7 +161,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 2017,
+      "value": 2019,
       "tier": "SS",
       "level": 5,
       "max_level": 6,
@@ -170,12 +170,12 @@
     },
     {
       "title": "Repos",
-      "value": 9,
-      "tier": "B",
-      "level": 2,
+      "value": 10,
+      "tier": "A",
+      "level": 3,
       "max_level": 6,
-      "next": 10,
-      "next_tier": "A"
+      "next": 25,
+      "next_tier": "S"
     },
     {
       "title": "Estrellas",

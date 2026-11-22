@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T11:22:51-03:00",
+  "generated_at": "2026-11-22T11:14:49-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -95,60 +95,60 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 1015409,
-      "percent": 37.0
+      "bytes": 1317437,
+      "percent": 43.2
     },
     {
       "name": "TypeScript",
       "bytes": 589551,
-      "percent": 21.5
+      "percent": 19.3
     },
     {
       "name": "Astro",
       "bytes": 352322,
-      "percent": 12.8
+      "percent": 11.6
     },
     {
       "name": "HTML",
       "bytes": 336522,
-      "percent": 12.3
+      "percent": 11.0
     },
     {
       "name": "Kotlin",
       "bytes": 192077,
-      "percent": 7.0
+      "percent": 6.3
     },
     {
       "name": "CSS",
       "bytes": 124472,
-      "percent": 4.5
+      "percent": 4.1
     },
     {
       "name": "JavaScript",
       "bytes": 81676,
-      "percent": 3.0
+      "percent": 2.7
     },
     {
       "name": "Shell",
-      "bytes": 21157,
-      "percent": 0.8
+      "bytes": 22404,
+      "percent": 0.7
     },
     {
       "name": "Otros",
       "bytes": 32450,
-      "percent": 1.2
+      "percent": 1.1
     }
   ],
   "streaks": {
-    "total": 2066,
-    "current": 13,
+    "total": 2071,
+    "current": 14,
     "current_start": "2026-11-08",
-    "current_end": "2026-11-21",
+    "current_end": "2026-11-22",
     "longest": 42,
     "longest_start": "2026-08-28",
     "longest_end": "2026-10-08",
-    "days_tracked": 1421,
-    "active_days": 234,
+    "days_tracked": 1422,
+    "active_days": 235,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -161,7 +161,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 2066,
+      "value": 2071,
       "tier": "SS",
       "level": 5,
       "max_level": 6,

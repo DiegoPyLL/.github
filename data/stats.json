@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T11:14:49-03:00",
+  "generated_at": "2026-11-23T14:37:07-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -141,13 +141,13 @@
   ],
   "streaks": {
     "total": 2071,
-    "current": 14,
-    "current_start": "2026-11-08",
-    "current_end": "2026-11-22",
+    "current": 0,
+    "current_start": null,
+    "current_end": null,
     "longest": 42,
     "longest_start": "2026-08-28",
     "longest_end": "2026-10-08",
-    "days_tracked": 1422,
+    "days_tracked": 1423,
     "active_days": 235,
     "first_day": "2023-10-20",
     "exact_counts": true

@@ -3,9 +3,9 @@
 <!-- END:hero -->
 
 <!-- BEGIN:quote -->
-> *“Se vive mejor oculto”*
+> *“Lo que hace el aburrimiento es increíble.”*
 >
-> <p align="right">— <b>Epicuro</b></p>
+> <p align="right">— <b>Diego Peña y Lillo Luhrs</b></p>
 <!-- END:quote -->
 
 ## 🔥 Rachas
@@ -39,5 +39,5 @@
 ---
 
 <!-- BEGIN:footer -->
-<sub>Actualizado automáticamente el 24 nov 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
+<sub>Actualizado automáticamente el 25 nov 2026 por <a href="https://github.com/DiegoPyLL/.github/blob/main/.github/workflows/refresh-readme.yml">GitHub Actions</a> — sin servicios externos en el render.</sub>
 <!-- END:footer -->

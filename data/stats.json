@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T14:07:48-03:00",
+  "generated_at": "2026-11-25T13:55:21-03:00",
   "profile": {
     "login": "DiegoPyLL",
     "name": "Diego Peña y Lillo",
@@ -66,9 +66,9 @@
       "stars": 3
     },
     {
-      "name": "VolutusLandingPage",
+      "name": "Volutus_LandingPage",
       "description": "Página web oficial de Volutus SpA",
-      "url": "https://github.com/VolutusDevelopment/VolutusLandingPage",
+      "url": "https://github.com/VolutusDevelopment/Volutus_LandingPage",
       "languages": [
         "HTML",
         "JavaScript",
@@ -140,15 +140,15 @@
     }
   ],
   "streaks": {
-    "total": 2071,
-    "current": 0,
-    "current_start": null,
-    "current_end": null,
+    "total": 2078,
+    "current": 2,
+    "current_start": "2026-11-24",
+    "current_end": "2026-11-25",
     "longest": 42,
     "longest_start": "2026-08-28",
     "longest_end": "2026-10-08",
-    "days_tracked": 1424,
-    "active_days": 235,
+    "days_tracked": 1425,
+    "active_days": 237,
     "first_day": "2023-10-20",
     "exact_counts": true
   },
@@ -161,7 +161,7 @@
   "achievements": [
     {
       "title": "Commits",
-      "value": 2071,
+      "value": 2078,
       "tier": "SS",
       "level": 5,
       "max_level": 6,
